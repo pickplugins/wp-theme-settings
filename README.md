@@ -28,7 +28,26 @@ An easy option and settings management framework for WordPress, Developer friend
 * Terms(category) list Field (select, select2, radio, checkbox)
 * Thumbnail size list Field (select, select2, radio, checkbox)
 
+#### Upcoming
 
+* Button Set
+* Editor
+* Color Gradient
+* Dimensions
+* Divide
+* Gallery
+* Image Select
+* Info
+* Slider
+* Link Color
+* Slider
+* Range
+* Switcher
+* Spinner
+* Select Post-Types
+* Select Posts
+* Radio Palette
+* Radio Image
 
 
 ### How to use
