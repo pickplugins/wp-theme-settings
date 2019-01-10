@@ -22,6 +22,12 @@ An easy option and settings management framework for WordPress, Developer friend
 * media
 * repeatable
 
+#### Special Fields
+
+* Page list Field (select, select2, radio, checkbox)
+* Terms(category) list Field (select, select2, radio, checkbox)
+* Thumbnail size list Field (select, select2, radio, checkbox)
+
 
 
 
