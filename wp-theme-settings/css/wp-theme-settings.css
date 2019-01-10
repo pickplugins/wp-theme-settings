@@ -1,0 +1,283 @@
+@charset "utf-8";
+
+.wpadminsettings{
+    margin-top: 20px;
+}
+
+
+.wpadminsettings .pp-row{}
+
+.wpadminsettings .pp-col{
+    display: inline-block;
+    margin: 10px 0;
+}
+
+.wpadminsettings .pp-col-50{
+    width: 49.50%;
+}
+
+
+.wpadminsettings .text-align-right{
+    text-align: right;
+}
+
+
+
+
+.wpadminsettings .form-section{
+    padding: 0 15px;
+}
+
+
+
+
+
+.wpadminsettings .nav-header,.wpadminsettings .nav-footer{
+    background: #fff;
+    padding: 15px 10px;
+
+}
+.wpadminsettings .nav-header{
+    border-bottom: 1px solid #ddd;
+}
+
+
+.wpadminsettings .nav-footer{
+    /*border-top: 1px solid #ddd;*/
+}
+
+
+
+.wpadminsettings .form-header{
+    padding: 20px;
+    background: #fff;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 20px;
+}
+
+.wpadminsettings .form-header .submit{
+
+}
+
+
+
+.wpadminsettings .form-footer{
+    padding: 20px;
+    background: #fff;
+    margin-bottom: 20px;
+    margin-top: 30px;
+    border-top: 1px solid #ddd;
+}
+
+
+.wpadminsettings .form-footer .submit{
+
+}
+
+
+
+.wpadminsettings .submit{
+    margin: 0;
+    padding: 0;
+}
+
+.wpadminsettings .themeName{
+    font-size: 18px;
+    line-height: normal;
+}
+.wpadminsettings .pagename{
+
+}
+.wpadminsettings .themeVersion{
+    color: #a0a5aa;
+    font-style: italic;
+    margin: 8px 0;
+    font-size: 13px;
+}
+
+
+
+.wpadminsettings .navigation {
+    width: 250px;
+    float: left;
+    position: sticky;
+    top: 30px;
+}
+.wpadminsettings .navigation .nav-item{
+    padding: 12px 10px;
+    margin: 0;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+    font-size: 13px;
+    background: #ffffff;
+    display: block;
+    text-decoration: none;
+}
+
+.wpadminsettings .navigation .nav-item-active{
+    background: #ffffff5e;
+
+}
+
+
+
+.wpadminsettings .form-wrapper {
+    margin-left: 251px;
+    background: #fff;
+}
+
+.wpadminsettings .form-table {
+    clear: none;
+}
+
+
+
+
+.wpadminsettings input[type="text"], .wpadminsettings textarea, .wpadminsettings select, .wpadminsettings input[type="range"], .wpadminsettings input[type="number"],.wpadminsettings .select2 {
+    width: 320px;
+}
+
+.wpadminsettings .repeatable{}
+.wpadminsettings .repeatable .field-list{
+    margin-top: 18px;
+}
+.wpadminsettings .repeatable .button{
+
+}
+
+
+.wpadminsettings .repeatable .item-wrap{
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+
+/*addons-grid*/
+.addons-grid{}
+.addons-grid .item{
+    width: 300px;
+    display: inline-block;
+    vertical-align: top;
+    margin: 10px;
+    background: #ddd;
+    overflow: hidden;
+}
+.addons-grid .name{
+
+}
+
+.addons-grid .name a{
+    margin: 10px;
+    text-decoration: none;
+    display: block;
+    font-weight: 600;
+}
+
+
+.addons-grid .thumb{ }
+.addons-grid .thumb img{
+    width: 100%;
+    height: auto;
+}
+
+/*faq-list*/
+
+.faq-list{}
+.faq-list .faq-item{
+    margin: 5px 0;
+}
+.faq-list .faq-header{
+    padding: 10px;
+    background: #ddd;
+}
+.faq-list .faq-content{
+    padding: 10px;
+    background: #e5e5e5;
+}
+
+/*addons-grid*/
+
+.addons-grid{}
+.addons-grid .item{
+    width: 300px;
+    display: inline-block;
+    vertical-align: top;
+    margin: 10px;
+    background: #ddd;
+    overflow: hidden;
+}
+.addons-grid .name{
+
+}
+
+.addons-grid .name a{
+    margin: 10px;
+    text-decoration: none;
+    display: block;
+    font-weight: 600;
+}
+
+
+.addons-grid .thumb{ }
+.addons-grid .thumb img{
+    width: 100%;
+    height: auto;
+}
+
+
+
+/* Collapsible */
+
+.wpadminsettings .collapsible{
+    margin-bottom: 2px;
+}
+.wpadminsettings .collapsible .header{
+    background: #eee;
+    padding: 8px 10px;
+}
+
+.wpadminsettings .collapsible .header span{
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 2px;
+}
+
+.wpadminsettings .collapsible .content{
+    display: none;
+    padding: 10px;
+    background: #f1f1f1;
+}
+
+
+.wpadminsettings .collapsible.active .content{
+    display: block;
+}
+
+
+
+@media screen and (max-width: 768px) {
+
+    .wpadminsettings .pp-col-50{
+        width: 100%;
+    }
+
+    .wpadminsettings .text-align-right{
+        text-align: left;
+    }
+
+    .wpadminsettings .navigation {
+        width: 100%;
+        float: none;
+        position: relative;
+    }
+
+    .wpadminsettings .form-wrapper {
+        margin-left: 0;
+        margin-top: 20px;
+    }
+
+}
+
+
+
