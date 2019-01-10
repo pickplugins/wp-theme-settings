@@ -5,20 +5,22 @@ An easy option and settings management framework for WordPress, Developer friend
 
 ## Input fields
 
-* text
-* text_multi
-* textarea
-* number
 * select
-* select_multi
+* select multi
+* select2
 * checkbox
 * radio
+* textarea
+* number
+* text
+* text_multi
 * colorpicker
 * datepicker
 * faq
-* custom
-
-
+* grid
+* custom_html
+* media
+* repeatable
 
 
 
