@@ -251,10 +251,7 @@ $wpThemeSettings_sub = new wpThemeSettings( $sub_args );
 
 ### Screenshots
 
-#### Add main menu
-![alt text](https://github.com/pickplugins/wpThemeSettings/blob/master/images/main-menu.png?raw=true "Add main menu")
+#### Add menu
+![alt text](https://github.com/pickplugins/wp-theme-settings/blob/master/screenshot.png?raw=true "Add main menu")
 
-
-#### Add sub menu
-![alt text](https://github.com/pickplugins/wpThemeSettings/blob/master/images/submenu.png?raw=true "Add sub menu")
 
