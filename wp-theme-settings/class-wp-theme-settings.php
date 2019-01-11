@@ -84,30 +84,32 @@ class wpThemeSettings {
 		try{
 
 		    //var_dump($type);
-            if( isset($option['type']) && $option['type'] === 'select' ) 		$this->generate_field_select( $option );
-            elseif( isset($option['type']) && $option['type'] === 'select_multi')	$this->generate_field_select_multi( $option );
-            elseif( isset($option['type']) && $option['type'] === 'select2')	    $this->generate_field_select2( $option );
-            elseif( isset($option['type']) && $option['type'] === 'thumb_sizes')	$this->generate_field_thumb_sizes( $option );
-			elseif( isset($option['type']) && $option['type'] === 'checkbox')	    $this->generate_field_checkbox( $option );
-			elseif( isset($option['type']) && $option['type'] === 'radio')		    $this->generate_field_radio( $option );
-			elseif( isset($option['type']) && $option['type'] === 'textarea')	    $this->generate_field_textarea( $option );
-			elseif( isset($option['type']) && $option['type'] === 'number' ) 	    $this->generate_field_number( $option );
-			elseif( isset($option['type']) && $option['type'] === 'text' ) 		    $this->generate_field_text( $option );
-            elseif( isset($option['type']) && $option['type'] === 'text_multi' ) 	$this->generate_field_text_multi( $option );
-            elseif( isset($option['type']) && $option['type'] === 'range' ) 	    $this->generate_field_range( $option );
-            elseif( isset($option['type']) && $option['type'] === 'range_input' ) 	$this->generate_field_range_input( $option );
-			elseif( isset($option['type']) && $option['type'] === 'colorpicker')    $this->generate_field_colorpicker( $option );
-			elseif( isset($option['type']) && $option['type'] === 'datepicker')	    $this->generate_field_datepicker( $option );
-            elseif( isset($option['type']) && $option['type'] === 'faq')	        $this->generate_field_faq( $option );
-            elseif( isset($option['type']) && $option['type'] === 'grid')	        $this->generate_field_grid( $option );
-            elseif( isset($option['type']) && $option['type'] === 'custom_html')	$this->generate_field_custom_html( $option );
-            elseif( isset($option['type']) && $option['type'] === 'media')		    $this->generate_media( $option );
-            elseif( isset($option['type']) && $option['type'] === 'media_multi')    $this->generate_media_multi( $option );
-            elseif( isset($option['type']) && $option['type'] === 'repeatable')	    $this->generate_repeatable( $option );
-            elseif( isset($option['type']) && $option['type'] === 'wp_editor')	    $this->generate_wp_editor( $option );
-            elseif( isset($option['type']) && $option['type'] === 'link_color')	    $this->generate_field_link_color( $option );
-            elseif( isset($option['type']) && $option['type'] === 'switch')	        $this->generate_field_switch( $option );
-            elseif( isset($option['type']) && $option['type'] === 'switch_multi')	$this->generate_field_switch_multi( $option );
+            if( isset($option['type']) && $option['type'] === 'select' ) 		        $this->generate_field_select( $option );
+            elseif( isset($option['type']) && $option['type'] === 'select_multi')	    $this->generate_field_select_multi( $option );
+            elseif( isset($option['type']) && $option['type'] === 'select2')	        $this->generate_field_select2( $option );
+            elseif( isset($option['type']) && $option['type'] === 'thumb_sizes')	    $this->generate_field_thumb_sizes( $option );
+			elseif( isset($option['type']) && $option['type'] === 'checkbox')	        $this->generate_field_checkbox( $option );
+			elseif( isset($option['type']) && $option['type'] === 'radio')		        $this->generate_field_radio( $option );
+			elseif( isset($option['type']) && $option['type'] === 'textarea')	        $this->generate_field_textarea( $option );
+			elseif( isset($option['type']) && $option['type'] === 'number' ) 	        $this->generate_field_number( $option );
+			elseif( isset($option['type']) && $option['type'] === 'text' ) 		        $this->generate_field_text( $option );
+            elseif( isset($option['type']) && $option['type'] === 'text_multi' ) 	    $this->generate_field_text_multi( $option );
+            elseif( isset($option['type']) && $option['type'] === 'range' ) 	        $this->generate_field_range( $option );
+            elseif( isset($option['type']) && $option['type'] === 'range_input' ) 	    $this->generate_field_range_input( $option );
+			elseif( isset($option['type']) && $option['type'] === 'colorpicker')        $this->generate_field_colorpicker( $option );
+            elseif( isset($option['type']) && $option['type'] === 'colorpicker_multi')  $this->generate_field_colorpicker_multi( $option );
+			elseif( isset($option['type']) && $option['type'] === 'datepicker')	        $this->generate_field_datepicker( $option );
+            elseif( isset($option['type']) && $option['type'] === 'faq')	            $this->generate_field_faq( $option );
+            elseif( isset($option['type']) && $option['type'] === 'grid')	            $this->generate_field_grid( $option );
+            elseif( isset($option['type']) && $option['type'] === 'custom_html')	    $this->generate_field_custom_html( $option );
+            elseif( isset($option['type']) && $option['type'] === 'media')		        $this->generate_media( $option );
+            elseif( isset($option['type']) && $option['type'] === 'media_multi')        $this->generate_media_multi( $option );
+            elseif( isset($option['type']) && $option['type'] === 'repeatable')	        $this->generate_repeatable( $option );
+            elseif( isset($option['type']) && $option['type'] === 'wp_editor')	        $this->generate_wp_editor( $option );
+            elseif( isset($option['type']) && $option['type'] === 'link_color')	        $this->generate_field_link_color( $option );
+            elseif( isset($option['type']) && $option['type'] === 'switch')	            $this->generate_field_switch( $option );
+            elseif( isset($option['type']) && $option['type'] === 'switch_multi')	    $this->generate_field_switch_multi( $option );
+            elseif( isset($option['type']) && $option['type'] === 'switch_img')	        $this->generate_field_switch_img( $option );
 
 
 
@@ -135,7 +137,7 @@ class wpThemeSettings {
 
         wp_enqueue_media();
 
-        echo "<div class='media_preview' style='width: 150px;margin-bottom: 10px;background: #d2d2d2;padding: 15px 5px;    text-align: center;border-radius: 5px;'>";
+        echo "<div class='media_preview' style='width: 150px;margin-bottom: 10px;background: #eee;padding: 15px 5px;    text-align: center;border-radius: 5px;'>";
 
         if( "audio/mpeg" == $media_type ){
 
@@ -272,6 +274,70 @@ class wpThemeSettings {
 		
 		echo "<script>jQuery(document).ready(function($) { $('#$id').wpColorPicker();});</script>";
 	}
+
+
+    public function generate_field_colorpicker_multi( $option ){
+
+        $id 			= isset( $option['id'] ) ? $option['id'] : "";
+        $placeholder 	= isset( $option['placeholder'] ) ? $option['placeholder'] : "";
+        $value 	 		= get_option( $id );
+        $default 	= isset( $option['default'] ) ? $option['default'] : array();
+
+        $values = !empty($value) ? $value : $default;
+
+        if(!empty($values)):
+            ?>
+            <div class="field-colorpicker-multi field-colorpicker-multi-<?php echo $id; ?>">
+
+                <div class="button add">Add</div>
+                <div class="item-list">
+                    <?php
+                    foreach ($values as $value):
+                        ?>
+                        <div class="item">
+                            <input type='text' class='regular-text' name='<?php echo $id; ?>[]' value='<?php echo $value; ?>' />
+                        </div>
+
+                    <?php
+                    endforeach;
+                    ?>
+                </div>
+
+            </div>
+            <?php
+
+        endif;
+
+
+        ?>
+        <script>jQuery(document).ready(function($) {
+
+                jQuery(document).on('click', '.field-colorpicker-multi-<?php echo $id; ?> .add', function() {
+
+                    html='<div class="item">';
+                    html+='<input type="text"  name="<?php echo $id; ?>[]" value="" />';
+                    html+='</div>';
+
+                    $('.field-colorpicker-multi-<?php echo $id; ?> .item-list').append(html);
+                    $('.field-colorpicker-multi-<?php echo $id; ?> input').wpColorPicker();
+
+                })
+
+
+            $('.field-colorpicker-multi-<?php echo $id; ?> input').wpColorPicker();
+
+        });</script>
+        <?php
+
+        echo "";
+    }
+
+
+
+
+
+
+
 
 
     public function generate_field_link_color( $option ){
@@ -937,6 +1003,62 @@ class wpThemeSettings {
     }
 
 
+
+
+
+
+    public function generate_field_switch_img( $option ){
+
+        $id				= isset( $option['id'] ) ? $option['id'] : "";
+        $width			= isset( $option['width'] ) ? $option['width'] : "";
+        $height			= isset( $option['height'] ) ? $option['height'] : "";
+        $args			= isset( $option['args'] ) ? $option['args'] : array();
+        $args			= is_array( $args ) ? $args : $this->generate_args_from_string( $args );
+        $option_value	= get_option( $id );
+
+
+        ?>
+        <div class="field-switch-img-wrapper field-switch-img-wrapper-<?php echo $id; ?>">
+            <?php
+            foreach( $args as $key => $value ):
+
+                $src = isset( $value['src'] ) ? $value['src'] : "";
+                $item_width = isset( $value['width'] ) ? $value['width'] : $width;
+                $item_height = isset( $value['height'] ) ? $value['height'] : $height;
+
+                $checked = is_array( $option_value ) && in_array( $key, $option_value ) ? "checked" : "";
+                ?><label style="width: <?php echo $item_width; ?>;height: <?php echo $item_height; ?>" class="<?php echo $checked; ?>" for='<?php echo $id; ?>-<?php echo $key; ?>'><input name='<?php echo $id; ?>[]' type='radio' id='<?php echo $id; ?>-<?php echo $key; ?>' value='<?php echo $key; ?>' <?php echo $checked; ?>><span class="sw-button"><img src="<?php echo $src; ?>"> </span></label><?php
+
+            endforeach;
+            ?>
+        </div>
+        <script>jQuery(document).ready(function($) {
+                jQuery(document).on('click', '.field-switch-img-wrapper-<?php echo $id; ?> .sw-button img', function() {
+
+                    jQuery('.field-switch-img-wrapper-<?php echo $id; ?> label').removeClass('checked');
+
+                    if(jQuery(this).parent().parent().hasClass('checked')){
+                        jQuery(this).parent().parent().removeClass('checked');
+                    }else{
+                        jQuery(this).parent().parent().addClass('checked');
+                    }
+                })
+            })
+
+        </script>
+
+        <?php
+
+    }
+
+
+
+
+
+
+
+
+
     public function generate_field_switch_multi( $option ){
 
         $id				= isset( $option['id'] ) ? $option['id'] : "";
@@ -973,8 +1095,6 @@ class wpThemeSettings {
         <?php
 
     }
-
-
 
 
 

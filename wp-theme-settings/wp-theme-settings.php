@@ -99,7 +99,7 @@ class wpThemeSettingsPlugin{
         wp_enqueue_script('jquery');
         wp_enqueue_script( 'jquery-ui-core' );
         wp_enqueue_script('jquery-ui-datepicker');
-
+        wp_enqueue_style('fontawesome', PLUGIN_URL.'css/fontawesome.min.css');
 
 
     }
