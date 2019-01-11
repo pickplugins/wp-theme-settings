@@ -20,8 +20,37 @@ $page_1_options = array(
 			'options' 	=> array(
 
                 array(
+                    'id'		=> 'switch_icon_field',
+                    'title'		=> __('Switch icon Field','text-domain'),
+                    'details'	=> __('Description of switch icon field','text-domain'),
+                    'type'		=> 'switch',
+                    'args'		=> array(
+                        'option_1'	=> __('<i class="fas fa-align-left"></i>','text-domain'),
+                        'option_2'	=> __('<i class="fas fa-align-center"></i>','text-domain'),
+                        'option_3'	=> __('<i class="fas fa-align-right"></i>','text-domain'),
+                    ),
+                ),
+
+
+                array(
+                    'id'		=> 'switch_multi_field',
+                    'title'		=> __('Switch multi Field','text-domain'),
+                    'details'	=> __('Description of switch multi field','text-domain'),
+                    'type'		=> 'switch_multi',
+                    'args'		=> array(
+                        'option_1'	=> __('Option 1','text-domain'),
+                        'option_2'	=> __('Option 2','text-domain'),
+                        'option_3'	=> __('Option 3','text-domain'),
+                        'option_4'	=> __('Option 4','text-domain'),
+                    ),
+                ),
+
+
+
+
+                array(
                     'id'		=> 'switch_field',
-                    'title'		=> __('switch Field','text-domain'),
+                    'title'		=> __('Switch Field','text-domain'),
                     'details'	=> __('Description of switch field','text-domain'),
                     'type'		=> 'switch',
                     'args'		=> array(

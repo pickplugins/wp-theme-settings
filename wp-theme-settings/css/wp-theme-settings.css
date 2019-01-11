@@ -370,6 +370,58 @@
 
 
 
+/*field-switch-multi-wrapper*/
+
+.field-switch-multi-wrapper{
+    margin-bottom: 15px;
+}
+
+.field-switch-multi-wrapper input[type='checkbox']{
+    display: none;
+}
+
+.field-switch-multi-wrapper .sw-button{
+    background: #eee;
+    padding: 5px 15px;
+    border: 1px solid #ddd;
+    margin: 0;
+    border-right: none;
+}
+
+
+.field-switch-multi-wrapper label.checked .sw-button {
+    background: #ddd;
+}
+
+.field-switch-multi-wrapper label:last-child .sw-button{
+    border-right: 1px solid #ddd;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.field-switch-multi-wrapper label:first-child .sw-button{
+
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @media screen and (max-width: 768px) {
 
     .wpadminsettings .pp-col-50{

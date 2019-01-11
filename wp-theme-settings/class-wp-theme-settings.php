@@ -84,7 +84,7 @@ class wpThemeSettings {
 		try{
 
 		    //var_dump($type);
-			    if( isset($option['type']) && $option['type'] === 'select' ) 		$this->generate_field_select( $option );
+            if( isset($option['type']) && $option['type'] === 'select' ) 		$this->generate_field_select( $option );
             elseif( isset($option['type']) && $option['type'] === 'select_multi')	$this->generate_field_select_multi( $option );
             elseif( isset($option['type']) && $option['type'] === 'select2')	    $this->generate_field_select2( $option );
             elseif( isset($option['type']) && $option['type'] === 'thumb_sizes')	$this->generate_field_thumb_sizes( $option );
@@ -107,7 +107,7 @@ class wpThemeSettings {
             elseif( isset($option['type']) && $option['type'] === 'wp_editor')	    $this->generate_wp_editor( $option );
             elseif( isset($option['type']) && $option['type'] === 'link_color')	    $this->generate_field_link_color( $option );
             elseif( isset($option['type']) && $option['type'] === 'switch')	        $this->generate_field_switch( $option );
-
+            elseif( isset($option['type']) && $option['type'] === 'switch_multi')	$this->generate_field_switch_multi( $option );
 
 
 
@@ -906,8 +906,6 @@ class wpThemeSettings {
         $args			= is_array( $args ) ? $args : $this->generate_args_from_string( $args );
         $option_value	= get_option( $id );
 
-
-
         ?>
         <div class="field-switch-wrapper field-switch-wrapper-<?php echo $id; ?>">
             <?php
@@ -919,11 +917,7 @@ class wpThemeSettings {
             endforeach;
             ?>
         </div>
-
-
         <script>jQuery(document).ready(function($) {
-
-
                 jQuery(document).on('click', '.field-switch-wrapper-<?php echo $id; ?> .sw-button', function() {
 
                     jQuery('.field-switch-wrapper-<?php echo $id; ?> label').removeClass('checked');
@@ -940,12 +934,45 @@ class wpThemeSettings {
 
         <?php
 
-
-
     }
 
 
+    public function generate_field_switch_multi( $option ){
 
+        $id				= isset( $option['id'] ) ? $option['id'] : "";
+        $args			= isset( $option['args'] ) ? $option['args'] : array();
+        $args			= is_array( $args ) ? $args : $this->generate_args_from_string( $args );
+        $option_value	= get_option( $id );
+
+        ?>
+        <div class="field-switch-multi-wrapper field-switch-multi-wrapper-<?php echo $id; ?>">
+            <?php
+            foreach( $args as $key => $value ):
+
+                $checked = is_array( $option_value ) && in_array( $key, $option_value ) ? "checked" : "";
+                ?><label class="<?php echo $checked; ?>" for='<?php echo $id; ?>-<?php echo $key; ?>'><input name='<?php echo $id; ?>[]' type='checkbox' id='<?php echo $id; ?>-<?php echo $key; ?>' value='<?php echo $key; ?>' <?php echo $checked; ?>><span class="sw-button"><?php echo $value; ?></span></label><?php
+
+            endforeach;
+            ?>
+        </div>
+        <script>jQuery(document).ready(function($) {
+                jQuery(document).on('click', '.field-switch-multi-wrapper-<?php echo $id; ?> .sw-button', function() {
+
+
+
+                    if(jQuery(this).parent().hasClass('checked')){
+                        jQuery(this).parent().removeClass('checked');
+                    }else{
+                        jQuery(this).parent().addClass('checked');
+                    }
+                })
+            })
+
+        </script>
+
+        <?php
+
+    }
 
 
 

@@ -26,7 +26,9 @@ An easy option and settings management framework for WordPress, Developer friend
 * Media Gallery
 * Editor
 * Link Color
-* Switcher
+* Switch
+* Switch multi
+
 
 #### Special Fields
 
@@ -35,8 +37,6 @@ An easy option and settings management framework for WordPress, Developer friend
 * Thumbnail size list Field (select, select2, radio, checkbox)
 
 #### Upcoming
-
-* Button Set
 
 * Color Gradient
 * Dimensions
