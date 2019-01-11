@@ -1,33 +1,64 @@
-# WPAdminSettings
+# wpThemeSettings
 An easy option and settings management framework for WordPress, Developer friendly and elegant look build with native WordPress UI,  
 
 #### Version: 1.0.0
 
 ## Input fields
 
-* text
-* text_multi
-* textarea
-* number
-* select
-* select_multi
-* checkbox
-* radio
-* colorpicker
-* datepicker
-* faq
-* custom
+* Select
+* Select multi
+* Select2
+* Checkbox
+* Radio
+* Textarea
+* Number
+* Text
+* Text multi
+* Range
+* Range with input
+* Color picker
+* Datepicker
+* FAQ
+* Grid
+* Custom_html
+* Repeatable
+* Media
+* Media Gallery
+* Editor
+* Link Color
+* Switcher
 
+#### Special Fields
 
+* Page list Field (select, select2, radio, checkbox)
+* Terms(category) list Field (select, select2, radio, checkbox)
+* Thumbnail size list Field (select, select2, radio, checkbox)
 
+#### Upcoming
 
+* Button Set
+
+* Color Gradient
+* Dimensions
+* Divide
+
+* Image Select
+* Info
+* Slider
+
+* Switcher
+* Spinner
+* Select Post-Types
+* Select Posts
+* Radio Palette
+* Radio Image
 
 
 ### How to use
 
-#### Adding class-WPAdminSettings.php class file
+#### Adding class-wp-theme-settings.php class file
 ```php
-include "class-WPAdminSettings.php";
+include "class-wp-theme-settings.php";
 ```
 
 #### Add your menu to WordPress Admin Menu
@@ -43,7 +74,7 @@ $args = array(
 	'menu_icon'       => "dashicons-hammer",
 );
 
-$WPAdminSettings = new WPAdminSettings( $args );
+$wpThemeSettings = new wpThemeSettings( $args );
 ```
 
 #### Design options for your menu
@@ -140,7 +171,7 @@ $args = array(
 	),
 );
 
-$WPAdminSettings = new WPAdminSettings( $args );
+$wpThemeSettings = new wpThemeSettings( $args );
 ```
 
 #### Add More Pages
@@ -184,7 +215,7 @@ $args = array(
 	),
 );
 
-$WPAdminSettings = new WPAdminSettings( $args );
+$wpThemeSettings = new wpThemeSettings( $args );
 ```
 
 #### Add submenu under any main menu
@@ -200,7 +231,7 @@ $sub_args = array(
 	'parent_slug' => "my-settings",
 );
 
-$WPAdminSettings_sub = new WPAdminSettings( $sub_args );
+$wpThemeSettings_sub = new wpThemeSettings( $sub_args );
 ```
 
 #### Design options for your submenu
@@ -245,16 +276,13 @@ $sub_args = array(
 	),
 );
 
-$WPAdminSettings_sub = new WPAdminSettings( $sub_args );
+$wpThemeSettings_sub = new wpThemeSettings( $sub_args );
 ```
 
 
 ### Screenshots
 
-#### Add main menu
-![alt text](https://github.com/pickplugins/WPAdminSettings/blob/master/images/main-menu.png?raw=true "Add main menu")
+#### Add menu
+![alt text](https://github.com/pickplugins/wp-theme-settings/blob/master/screenshot.png?raw=true "Add main menu")
 
-
-#### Add sub menu
-![alt text](https://github.com/pickplugins/WPAdminSettings/blob/master/images/submenu.png?raw=true "Add sub menu")
 

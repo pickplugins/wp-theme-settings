@@ -94,14 +94,19 @@ class wpThemeSettings {
 			elseif( isset($option['type']) && $option['type'] === 'number' ) 	    $this->generate_field_number( $option );
 			elseif( isset($option['type']) && $option['type'] === 'text' ) 		    $this->generate_field_text( $option );
             elseif( isset($option['type']) && $option['type'] === 'text_multi' ) 	$this->generate_field_text_multi( $option );
+            elseif( isset($option['type']) && $option['type'] === 'range' ) 	    $this->generate_field_range( $option );
+            elseif( isset($option['type']) && $option['type'] === 'range_input' ) 	$this->generate_field_range_input( $option );
 			elseif( isset($option['type']) && $option['type'] === 'colorpicker')    $this->generate_field_colorpicker( $option );
 			elseif( isset($option['type']) && $option['type'] === 'datepicker')	    $this->generate_field_datepicker( $option );
-            elseif( isset($option['type']) && $option['type'] === 'repeater')	    $this->generate_field_repeater( $option );
             elseif( isset($option['type']) && $option['type'] === 'faq')	        $this->generate_field_faq( $option );
             elseif( isset($option['type']) && $option['type'] === 'grid')	        $this->generate_field_grid( $option );
             elseif( isset($option['type']) && $option['type'] === 'custom_html')	$this->generate_field_custom_html( $option );
-            elseif( isset($option['type']) && $option['type'] === 'media')		    $this->pick_settings_generate_media( $option );
-                elseif( isset($option['type']) && $option['type'] === 'repeatable')	$this->pick_settings_generate_repeatable( $option );
+            elseif( isset($option['type']) && $option['type'] === 'media')		    $this->generate_media( $option );
+            elseif( isset($option['type']) && $option['type'] === 'media_multi')    $this->generate_media_multi( $option );
+            elseif( isset($option['type']) && $option['type'] === 'repeatable')	    $this->generate_repeatable( $option );
+            elseif( isset($option['type']) && $option['type'] === 'wp_editor')	    $this->generate_wp_editor( $option );
+            elseif( isset($option['type']) && $option['type'] === 'link_color')	    $this->generate_field_link_color( $option );
+            elseif( isset($option['type']) && $option['type'] === 'switch')	        $this->generate_field_switch( $option );
 
 
 
@@ -120,7 +125,7 @@ class wpThemeSettings {
 
 
 
-    public function pick_settings_generate_media( $option ){
+    public function generate_media( $option ){
 
         $id			= isset( $option['id'] ) ? $option['id'] : "";
         $value		= get_option( $id );
@@ -160,6 +165,82 @@ class wpThemeSettings {
     }
 
 
+    public function generate_media_multi( $option ){
+
+        $id			= isset( $option['id'] ) ? $option['id'] : "";
+        $values		= get_option( $id );
+
+        wp_enqueue_media();
+
+        ?>
+
+        <div class="media">
+            <div class='button' id='media_upload_<?php echo $id; ?>'>Upload</div>
+            <div class="media-list media-list-<?php echo $id; ?>">
+
+                <?php
+                if(!empty($values) && is_array($values)):
+                foreach ($values as $value ):
+                    $media_url	= wp_get_attachment_url( $value );
+                    $media_type	= get_post_mime_type( $value );
+                    $media_title= get_the_title( $value );
+                    ?>
+                    <div class="item">
+                        <span class="remove" onclick="jQuery(this).parent().remove()">X</span>
+                        <img id='media_preview_<?php echo $id; ?>' src='<?php echo $media_url; ?>' style='width:100%'/>
+                        <div class="item-title"><?php echo $media_title; ?></div>
+                        <input type='hidden' name='<?php echo $id; ?>[]' value='<?php echo $value; ?>' />
+                    </div>
+                    <?php
+                endforeach;
+                endif;
+                ?>
+
+            </div>
+
+
+        </div>
+
+        <script>jQuery(document).ready(function($){
+                $('#media_upload_<?php echo $id; ?>').click(function() {
+                    var send_attachment_bkp = wp.media.editor.send.attachment;
+                    wp.media.editor.send.attachment = function(props, attachment) {
+
+                        attachment_id = attachment.id;
+                        attachment_url = attachment.url;
+
+                        html = '<div class="item">';
+                        html += '<span class="remove" onclick="jQuery(this).parent().remove()">X</span>';
+                        html += '<img src="'+attachment_url+'" style="width:100%"/>';
+                        html += '<input type="hidden" name="<?php echo $id; ?>[]" value="'+attachment_id+'" />';
+                        html += '</div>';
+
+                        $('.media-list-<?php echo $id; ?>').append(html);
+
+                        wp.media.editor.send.attachment = send_attachment_bkp;
+                    }
+                    wp.media.editor.open($(this));
+                    return false;
+                });
+            });	</script>
+
+        <?php
+
+
+
+        echo "";
+    }
+
+
+
+
+
+
+
+
+
+
+
 
 
 	public function generate_field_datepicker( $option ){
@@ -191,7 +272,113 @@ class wpThemeSettings {
 		
 		echo "<script>jQuery(document).ready(function($) { $('#$id').wpColorPicker();});</script>";
 	}
-	
+
+
+    public function generate_field_link_color( $option ){
+
+        $id 			= isset( $option['id'] ) ? $option['id'] : "";
+        $placeholder 	= isset( $option['placeholder'] ) ? $option['placeholder'] : "";
+        $values 	 		= get_option( $id );
+        $args 	= isset( $option['args'] ) ? $option['args'] : array('link'	=> '#1B2A41','hover' => '#3F3244','active' => '#60495A','visited' => '#7D8CA3' );
+
+        //var_dump($values);
+        ?>
+        <ul class="link-color">
+        <?php
+        if(!empty($values) && is_array($values)):
+
+            foreach ($args as $argindex=>$value):
+
+                ?>
+                <li>
+                    <div class="item"><span class="title">a:<?php echo $argindex; ?> Color</span><div class="colorpicker"><input type='text' class='<?php echo $id; ?>' name='<?php echo $id; ?>[<?php echo $argindex; ?>]'   value='<?php echo $values[$argindex]; ?>' /></div></div>
+                </li>
+                <?php
+            endforeach;
+
+        else:
+            foreach ($args as $argindex=>$value):
+                ?>
+                <li>
+                    <div class="item"><span class="title">a:<?php echo $argindex; ?> Color</span><div class="colorpicker"><input type='text' class='<?php echo $id; ?>' name='<?php echo $id; ?>[<?php echo $argindex; ?>]'   value='<?php echo $value; ?>' /></div></div>
+                </li>
+            <?php
+            endforeach;
+
+        endif;
+        ?>
+        </ul>
+        <?php
+        //echo "<input type='text' class='regular-text' name='$id' id='$id' placeholder='$placeholder' value='$value' />";
+
+        echo "<script>jQuery(document).ready(function($) { $('.$id').wpColorPicker();});</script>";
+    }
+
+
+
+
+    public function generate_field_range_input( $option ){
+
+        $id 			= isset( $option['id'] ) ? $option['id'] : "";
+        $value 	 		= get_option( $id );
+        $default 	= isset( $option['default'] ) ? $option['default'] : "";
+        $args 	= isset( $option['args'] ) ? $option['args'] : "";
+
+        $value = !empty($value) ? $value : $default;
+
+        ?>
+        <div class="range-input range-input-<?php echo $id; ?>">
+            <input type="number" class="range-val" name='<?php echo $id; ?>' value="<?php echo $value; ?>">
+            <input type='range' min='<?php echo $args['min']; ?>' max='<?php echo $args['max']; ?>' step='<?php echo $args['step']; ?>'  class='range-hndle' value='<?php echo $value; ?>' />
+        </div>
+
+
+
+
+    <script>jQuery(document).ready(function($) {
+
+
+            jQuery(document).on('change', '.range-input-<?php echo $id; ?> .range-hndle', function() {
+
+                val = $(this).val();
+                $('.range-input-<?php echo $id; ?> .range-val').val(val);
+            })
+
+            jQuery(document).on('keyup', '.range-input-<?php echo $id; ?> .range-val', function() {
+
+                val = $(this).val();
+                console.log(val);
+                $('.range-input-<?php echo $id; ?> .range-hndle').val(val);
+            })
+
+
+        })
+
+    </script>
+
+
+
+        <?php
+    }
+
+
+    public function generate_field_range( $option ){
+
+        $id 			= isset( $option['id'] ) ? $option['id'] : "";
+        $value 	 		= get_option( $id );
+        $default 	= isset( $option['default'] ) ? $option['default'] : "";
+        $args 	= isset( $option['args'] ) ? $option['args'] : "";
+
+        $value = !empty($value) ? $value : $default;
+
+        ?>
+        <input type='range' min='<?php echo $args['min']; ?>' max='<?php echo $args['max']; ?>' step='<?php echo $args['step']; ?>' name='<?php echo $id; ?>' id='<?php echo $id; ?>' value='<?php echo $value; ?>' />
+
+        <?php
+    }
+
+
+
 	public function generate_field_text( $option ){
 		
 		$id 			= isset( $option['id'] ) ? $option['id'] : "";
@@ -203,6 +390,8 @@ class wpThemeSettings {
 
 		echo "<input type='text' class='regular-text' name='$id' id='$id' placeholder='$placeholder' value='$value' />";
 	}
+
+
 
     public function generate_field_text_multi( $option ){
 
@@ -256,7 +445,7 @@ class wpThemeSettings {
 
 
 
-    public function pick_settings_generate_repeatable( $option ){
+    public function generate_repeatable( $option ){
 
         $id 			= isset( $option['id'] ) ? $option['id'] : "";
         $collapsible 	= isset( $option['collapsible'] ) ? $option['collapsible'] : "";
@@ -440,7 +629,25 @@ class wpThemeSettings {
 		
 		echo "<textarea name='$id' id='$id' cols='40' rows='5' placeholder='$placeholder'>$value</textarea>";
 	}
-	
+
+
+    public function generate_wp_editor( $option ){
+
+        $id = isset( $option['id'] ) ? $option['id'] : "";
+        $placeholder = isset( $option['placeholder'] ) ? $option['placeholder'] : "";
+        $default = isset( $option['default'] ) ? $option['default'] : "";
+        $editor_settings= isset( $option['editor_settings'] ) ? $option['editor_settings'] : array('textarea_name'=>$id);
+
+        $value 	 = get_option( $id );
+        $value = !empty($value) ? $value : $default;
+
+        wp_editor( $value, $id, $settings = $editor_settings);
+
+        //echo "<textarea name='$id' id='$id' cols='40' rows='5' placeholder='$placeholder'>$value</textarea>";
+    }
+
+
+
 	public function generate_field_select( $option ){
 		
 		$id 	= isset( $option['id'] ) ? $option['id'] : "";
@@ -566,7 +773,24 @@ class wpThemeSettings {
         //var_dump($option_value);
 
         ?>
-        <div class='faq-list'>
+        <script>jQuery(document).ready(function($) {
+
+
+                jQuery(document).on('click', '.faq-list-<?php echo $id; ?> .faq-header', function() {
+
+                    if(jQuery(this).parent().hasClass('active')){
+                        jQuery(this).parent().removeClass('active');
+                    }else{
+                        jQuery(this).parent().addClass('active');
+                    }
+                })
+            })
+
+        </script>
+
+
+
+        <div class='faq-list faq-list-<?php echo $id; ?>'>
             <?php
             foreach( $args as $key => $value ):
 
@@ -675,6 +899,51 @@ class wpThemeSettings {
 
 
 
+    public function generate_field_switch( $option ){
+
+        $id				= isset( $option['id'] ) ? $option['id'] : "";
+        $args			= isset( $option['args'] ) ? $option['args'] : array();
+        $args			= is_array( $args ) ? $args : $this->generate_args_from_string( $args );
+        $option_value	= get_option( $id );
+
+
+
+        ?>
+        <div class="field-switch-wrapper field-switch-wrapper-<?php echo $id; ?>">
+            <?php
+            foreach( $args as $key => $value ):
+
+                $checked = is_array( $option_value ) && in_array( $key, $option_value ) ? "checked" : "";
+                ?><label class="<?php echo $checked; ?>" for='<?php echo $id; ?>-<?php echo $key; ?>'><input name='<?php echo $id; ?>[]' type='radio' id='<?php echo $id; ?>-<?php echo $key; ?>' value='<?php echo $key; ?>' <?php echo $checked; ?>><span class="sw-button"><?php echo $value; ?></span></label><?php
+
+            endforeach;
+            ?>
+        </div>
+
+
+        <script>jQuery(document).ready(function($) {
+
+
+                jQuery(document).on('click', '.field-switch-wrapper-<?php echo $id; ?> .sw-button', function() {
+
+                    jQuery('.field-switch-wrapper-<?php echo $id; ?> label').removeClass('checked');
+
+                    if(jQuery(this).parent().hasClass('checked')){
+                        jQuery(this).parent().removeClass('checked');
+                    }else{
+                        jQuery(this).parent().addClass('checked');
+                    }
+                })
+            })
+
+        </script>
+
+        <?php
+
+
+
+    }
+
 
 
 
@@ -737,8 +1006,8 @@ class wpThemeSettings {
         <div class='navigation'>
 
             <div class="nav-header">
-                <div class="themeName">PickPlugins</div>
-                <div class="themeVersion">Version: 1.0.0</div>
+                <div class="themeName"><?php echo $this->get_item_name(); ?></div>
+                <div class="themeVersion"><?php echo sprintf(__('Version: %s', 'wp-theme-settings'), $this->get_item_version()); ?></div>
 
             </div>
 
@@ -800,7 +1069,7 @@ class wpThemeSettings {
                     <div class="pp-row">
                         <div class="pp-col pp-col-50">
                             <div class=""></div>
-                            <span>WP Theme Settings | Developed by : <a class="" href="http://pickplugins.com">PickPlugins</a> | Version: 1.0.0</span>
+                            <span><a target="_blank" href="https://github.com/pickplugins/wp-theme-settings">WP Theme Settings</a> | Developed by : <a class="" href="http://pickplugins.com">PickPlugins</a> | Version: 1.0.0</span>
                         </div>
                         <div class="pp-col pp-col-50 text-align-right">
                             <?php submit_button(null,'primary', null, false); ?>
@@ -888,6 +1157,18 @@ class wpThemeSettings {
 		
 		return isset( $_GET['tab'] ) ? sanitize_text_field($_GET['tab']) : $default_tab;
 	}
+
+    private function get_item_name(){
+        if( isset( $this->data['item_name'] ) ) return $this->data['item_name'];
+        else return "PickPlugins";
+    }
+
+    private function get_item_version(){
+        if( isset( $this->data['item_version'] ) ) return $this->data['item_version'];
+        else return "1.0.0";
+    }
+
+
 	private function get_menu_type(){
 		if( isset( $this->data['menu_type'] ) ) return $this->data['menu_type'];
 		else return "main";

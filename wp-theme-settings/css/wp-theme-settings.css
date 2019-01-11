@@ -187,13 +187,22 @@
 .faq-list .faq-item{
     margin: 5px 0;
 }
+
+.faq-list .faq-item.active .faq-content{
+    display: block;
+}
+.faq-list .faq-item.active .faq-header{
+    background: #ddddddbf;
+}
+
 .faq-list .faq-header{
     padding: 10px;
-    background: #ddd;
+    background: #eee;
 }
 .faq-list .faq-content{
     padding: 10px;
-    background: #e5e5e5;
+    background: #e5e5e55e;
+    display: none;
 }
 
 /*addons-grid*/
@@ -204,9 +213,12 @@
     display: inline-block;
     vertical-align: top;
     margin: 10px;
-    background: #ddd;
+    background: #eee;
     overflow: hidden;
 }
+
+
+
 .addons-grid .name{
 
 }
@@ -252,6 +264,108 @@
 
 .wpadminsettings .collapsible.active .content{
     display: block;
+}
+
+
+
+.media-list{
+    margin-top: 10px;
+}
+.media-list .item{
+    width: 150px;
+    display: inline-block;
+    margin: 5px;
+    background: #eee;
+    padding: 5px;
+    position: relative;
+    vertical-align: top;
+    min-height: 80px;
+}
+
+.media-list .item.empty .item-title{
+    vertical-align: middle;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-37%,-50%);
+    width: 100%;
+}
+
+
+.media-list .item .remove{
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 4px 8px;
+    background: hsl(12, 77%, 54%);
+    color: #fff;
+    cursor: pointer;
+}
+
+
+/* .link-color */
+
+.link-color{}
+.link-color .item{
+    margin: 5px 0;
+}
+
+.link-color .title{
+    display: inline-block;
+    min-width: 130px;
+}
+.link-color .colorpicker{
+    display: inline-block;
+}
+
+
+.range-input{}
+.range-input input[type="number"]{
+    max-width: 60px;
+    display: inline-block;
+}
+
+.range-input input[type="range"]{
+    max-width: 253px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+
+
+/*field-switch-wrapper*/
+
+.field-switch-wrapper{
+    margin-bottom: 15px;
+}
+
+.field-switch-wrapper input[type='radio']{
+    display: none;
+}
+
+.field-switch-wrapper .sw-button{
+    background: #eee;
+    padding: 5px 15px;
+    border: 1px solid #ddd;
+    margin: 0;
+    border-right: none;
+}
+
+
+.field-switch-wrapper label.checked .sw-button {
+    background: #ddd;
+}
+
+.field-switch-wrapper label:last-child .sw-button{
+    border-right: 1px solid #ddd;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.field-switch-wrapper label:first-child .sw-button{
+
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
 }
 
 
