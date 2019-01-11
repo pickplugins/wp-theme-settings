@@ -28,6 +28,7 @@ An easy option and settings management framework for WordPress, Developer friend
 * Link Color
 * Switch
 * Switch Multi
+* Switch image
 
 #### Special Fields
 
@@ -40,11 +41,9 @@ An easy option and settings management framework for WordPress, Developer friend
 * Color Gradient
 * Dimensions
 * Divide
-
 * Image Select
 * Info
 * Slider
-
 * Switcher
 * Spinner
 * Select Post-Types
