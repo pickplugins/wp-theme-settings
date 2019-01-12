@@ -29,6 +29,7 @@ An easy option and settings management framework for WordPress, Developer friend
 * Switch
 * Switch Multi
 * Switch image
+* Dimensions (width, height, custom)
 
 #### Special Fields
 
@@ -39,17 +40,11 @@ An easy option and settings management framework for WordPress, Developer friend
 #### Upcoming
 
 * Color Gradient
-* Dimensions
 * Divide
-* Image Select
 * Info
 * Slider
-* Switcher
 * Spinner
-* Select Post-Types
-* Select Posts
 * Radio Palette
-* Radio Image
 
 
 ### How to use
