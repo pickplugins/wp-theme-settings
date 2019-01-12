@@ -36,6 +36,8 @@ An easy option and settings management framework for WordPress, Developer friend
 * Page list Field (select, select2, radio, checkbox)
 * Terms(category) list Field (select, select2, radio, checkbox)
 * Thumbnail size list Field (select, select2, radio, checkbox)
+* Posts (select, select2, radio, checkbox)
+* Post-Types list field (select, select2, radio, checkbox)
 
 #### Upcoming
 
