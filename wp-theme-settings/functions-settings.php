@@ -8,6 +8,14 @@ if ( ! defined('ABSPATH')) exit;  // if direct access
 
 
 
+
+
+
+
+
+
+
+
 $page_1_options = array(
 
     'page_nav' 	=> __( 'Nav Title 1', 'user-profile' ),
@@ -18,6 +26,55 @@ $page_1_options = array(
 			'title' 	=> 	__('This is Section Title','user-profile'),
 			'description' 	=> __('This is section details','user-profile'),
 			'options' 	=> array(
+
+
+
+
+                array(
+                    'id'		=> 'select2_sidebars_field',
+                    'title'		=> __('Select2 for sidebar  Field','text-domain'),
+                    'details'	=> __('Description of select2 for sidebars field','text-domain'),
+                    'type'		=> 'select2',
+                    'args'		=> 'WPADMINSETTINGS_SIDEBARS_ARRAY',
+                ),
+
+
+               array(
+                   'id'		=> 'select2_menu_field',
+                   'title'		=> __('Select2 for menu  Field','text-domain'),
+                   'details'	=> __('Description of select2 for menu field','text-domain'),
+                   'type'		=> 'select2',
+                   'args'		=> 'WPADMINSETTINGS_MENUS_ARRAY',
+               ),
+
+                array(
+                    'id'		=> 'select2_user_roles_field',
+                    'title'		=> __('Select2 for user roles  Field','text-domain'),
+                    'details'	=> __('Description of select2 for user roles field','text-domain'),
+                    'type'		=> 'select2',
+                    'multiple'=> true,
+                    'args'		=> 'WPADMINSETTINGS_USER_ROLES',
+                ),
+
+
+                array(
+                    'id'		=> 'time_format_field',
+                    'title'		=> __('time format Field','text-domain'),
+                    'details'	=> __('Description of time format field','text-domain'),
+                    'type'		=> 'time_format',
+                    'args'		=> array('g:i a' ,'g:i A', 'H:i'),
+                    'default'		=> 'H:i',
+                ),
+
+                array(
+                    'id'		=> 'date_format_field',
+                    'title'		=> __('date format Field','text-domain'),
+                    'details'	=> __('Description of date format field','text-domain'),
+                    'type'		=> 'date_format',
+                    'args'		=> array('F j, Y' ,'Y-m-d', 'm/d/Y' ,'d/m/Y' ),
+                    'default'		=> 'F j, Y',
+
+                ),
 
                 array(
                     'id'		=> 'icon_multi_field',
@@ -84,6 +141,32 @@ $page_1_options = array(
 
                     ),
                 ),
+
+
+
+
+				
+			)
+		),
+		
+	),
+);
+
+
+
+
+$page_2_options = array(
+
+    'page_nav' 	=> __( 'Nav Title 2', 'user-profile' ),
+    'priority' => 10,
+    'page_settings' => array(
+
+        'section_1' => array(
+            'title' 	=> 	__('This is Section Title','user-profile'),
+            'description' 	=> __('This is section details','user-profile'),
+            'options' 	=> array(
+
+
 
 
                 array(
@@ -198,12 +281,6 @@ $page_1_options = array(
                 ),
 
 
-
-
-
-
-
-
                 array(
                     'id'		=> 'checkbox_field',
                     'title'		=> __('Checkbox  Field','text-domain'),
@@ -216,6 +293,30 @@ $page_1_options = array(
                         'option_4'	=> __('Option 4','text-domain'),
                     ),
                 ),
+
+
+
+            )
+        ),
+
+    ),
+);
+
+
+
+$page_3_options = array(
+
+    'page_nav' 	=> __( 'Nav Title 3', 'user-profile' ),
+    'priority' => 10,
+    'page_settings' => array(
+
+        'section_1' => array(
+            'title' 	=> 	__('This is Section Title','user-profile'),
+            'description' 	=> __('This is section details','user-profile'),
+            'options' 	=> array(
+
+
+
 
                 array(
                     'id'		=> 'radio_field',
@@ -331,6 +432,30 @@ $page_1_options = array(
 
 
 
+
+
+            )
+        ),
+
+    ),
+);
+
+
+
+$page_4_options = array(
+
+    'page_nav' 	=> __( 'Nav Title 4', 'user-profile' ),
+    'priority' => 10,
+    'page_settings' => array(
+
+        'section_1' => array(
+            'title' 	=> 	__('This is Section Title','user-profile'),
+            'description' 	=> __('This is section details','user-profile'),
+            'options' 	=> array(
+
+
+
+
                 array(
                     'id'		=> 'select2_posts_list_field',
                     'title'		=> __('Multi Select2 for post list  Field','text-domain'),
@@ -438,17 +563,12 @@ $page_1_options = array(
 
 
 
-				
-			)
-		),
-		
-	),
+
+            )
+        ),
+
+    ),
 );
-
-
-
-
-
 
 
 
@@ -468,7 +588,9 @@ $args = array(
     'item_version'         => "1.0.2",
     'pages' 	        => array(
 		'page-1'    => $page_1_options,
-		//'page-2'  => $page_2_options,
+		'page-2'    => $page_2_options,
+        'page-3'    => $page_3_options,
+        'page-4'    => $page_4_options,
 
 	),
 );

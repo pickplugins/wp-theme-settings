@@ -632,7 +632,10 @@
     margin: 2px;
 }
 
-
+.field-icon-multi-wrapper .icons-wrapper .item:hover {
+    background-color: #e83939;
+    color: #fff;
+}
 
 
 
@@ -676,6 +679,29 @@
 }
 
 
+/*field-date-format-wrapper*/
+
+.field-date-format-wrapper{}
+
+
+.field-date-format-wrapper .format-list{}
+.field-date-format-wrapper .format-list label{
+    min-width: 200px;
+    display: inline-block;
+}
+
+
+
+/*field-date-format-wrapper*/
+
+.field-time-format-wrapper{}
+
+
+.field-time-format-wrapper .format-list{}
+.field-time-format-wrapper .format-list label{
+    min-width: 200px;
+    display: inline-block;
+}
 
 
 

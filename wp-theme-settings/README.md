@@ -32,6 +32,8 @@ An easy option and settings management framework for WordPress, Developer friend
 * Dimensions (width, height, custom)
 * Icon
 * Icon multi
+* Date format 
+* Time format 
 
 #### Special Fields
 
@@ -40,6 +42,9 @@ An easy option and settings management framework for WordPress, Developer friend
 * Thumbnail size list Field (select, select2, radio, checkbox)
 * Posts (select, select2, radio, checkbox)
 * Post-Types list field (select, select2, radio, checkbox)
+* User Role (select, select2, radio, checkbox)
+* Choose Menu (select, select2, radio, checkbox)
+* Sidebars selection (select, select2, radio, checkbox)
 
 #### Upcoming
 
@@ -49,13 +54,11 @@ An easy option and settings management framework for WordPress, Developer friend
 * Slider
 * Spinner
 * Radio Palette
-* Menu Select
-* Sidebar/widgets Select
 * Comments Select
 * User Select
 * User Multi Select
-* User Role Select
-* Date format select
+
+
 * Time format
 
 ### How to use

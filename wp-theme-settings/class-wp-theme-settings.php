@@ -103,6 +103,11 @@ class wpThemeSettings {
             elseif( isset($option['type']) && $option['type'] === 'color_palette_multi')
                 $this->generate_field_color_palette_multi( $option );
 
+            elseif( isset($option['type']) && $option['type'] === 'date_format')	    $this->generate_field_date_format( $option );
+
+            elseif( isset($option['type']) && $option['type'] === 'time_format')
+                $this->generate_field_time_format( $option );
+
             elseif( isset($option['type']) && $option['type'] === 'datepicker')	        $this->generate_field_datepicker( $option );
             elseif( isset($option['type']) && $option['type'] === 'faq')	            $this->generate_field_faq( $option );
             elseif( isset($option['type']) && $option['type'] === 'grid')	            $this->generate_field_grid( $option );
@@ -117,6 +122,8 @@ class wpThemeSettings {
             elseif( isset($option['type']) && $option['type'] === 'switch_img')	        $this->generate_field_switch_img( $option );
             elseif( isset($option['type']) && $option['type'] === 'icon')	            $this->generate_field_icon($option );
             elseif( isset($option['type']) && $option['type'] === 'icon_multi')	        $this->generate_field_icon_multi($option );
+
+            elseif( isset($option['type']) && $option['type'] === 'linear_gradient')	$this->generate_linear_gradient($option );
 
 
 
@@ -245,10 +252,143 @@ class wpThemeSettings {
 
 
 
+    public function generate_field_time_format( $option ){
+
+        $id 			= isset( $option['id'] ) ? $option['id'] : "";
+        $default 	= isset( $option['default'] ) ? $option['default'] : "";
+        $args 	= isset( $option['args'] ) ? $option['args'] : "";
+
+
+        $value 	 		= get_option( $id );
+
+        $value 	 		= !empty($value) ? $value : $default;
+
+        //var_dump($value);
+
+        ?>
+        <div class="field-time-format-wrapper field-time-format-wrapper-<?php echo $id; ?>">
+            <ul class="format-list">
+                <?php
+                if(!empty($args)):
+                    foreach ($args as $item):
+
+                        $checked = ($item == $value) ? 'checked':false;
+
+                        //var_dump($checked);
+
+                        ?>
+                        <li datavalue="<?php echo $item; ?>">
+                            <label><input type="radio" <?php echo $checked; ?> name="preset_<?php echo $id; ?>"
+                                          value="<?php echo $item; ?>">
+                                <span
+                                        class="name"><?php echo date($item); ?></span></label>
+                            <span class="format"><code><?php echo $item; ?></code></span>
+                        </li>
+                    <?php
+
+                    endforeach;
+
+                    ?>
+                    <li class="format-value">
+
+                        <span class="format"><input value="<?php echo $value; ?>" name="<?php echo $id; ?>"></span>
+                        <div class="">Preview: <?php echo date($value); ?></div>
+                    </li>
+                <?php
+                endif;
+                ?>
+            </ul>
+
+
+
+        </div>
+
+        <script>jQuery(document).ready(function($) {
+
+                jQuery(document).on('click', '.field-time-format-wrapper-<?php echo $id; ?> .format-list li', function () {
+
+                    value = $(this).attr('datavalue');
+                    $('.field-time-format-wrapper-<?php echo $id; ?> .format-value input').val(value);
+
+                })
+
+            });</script>
+
+
+        <?php
+
+    }
 
 
 
 
+
+    public function generate_field_date_format( $option ){
+
+        $id 			= isset( $option['id'] ) ? $option['id'] : "";
+        $default 	= isset( $option['default'] ) ? $option['default'] : "";
+        $args 	= isset( $option['args'] ) ? $option['args'] : "";
+
+
+        $value 	 		= get_option( $id );
+
+        $value 	 		= !empty($value) ? $value : $default;
+
+        //var_dump($value);
+
+        ?>
+        <div class="field-date-format-wrapper field-date-format-wrapper-<?php echo $id; ?>">
+            <ul class="format-list">
+                <?php
+                if(!empty($args)):
+                    foreach ($args as $item):
+
+                        $checked = ($item == $value) ? 'checked':false;
+
+                    //var_dump($checked);
+
+                        ?>
+                        <li datavalue="<?php echo $item; ?>">
+                            <label><input type="radio" <?php echo $checked; ?> name="preset_<?php echo $id; ?>"
+                                          value="<?php echo $item; ?>">
+                                <span
+                                        class="name"><?php echo date($item); ?></span></label>
+                            <span class="format"><code><?php echo $item; ?></code></span>
+                        </li>
+                        <?php
+
+                    endforeach;
+
+                    ?>
+                    <li class="format-value">
+
+                        <span class="format"><input value="<?php echo $value; ?>" name="<?php echo $id; ?>"></span>
+                        <div class="">Preview: <?php echo date($value); ?></div>
+                    </li>
+                <?php
+                endif;
+                ?>
+            </ul>
+
+
+
+        </div>
+
+        <script>jQuery(document).ready(function($) {
+
+                jQuery(document).on('click', '.field-date-format-wrapper-<?php echo $id; ?> .format-list li', function () {
+
+                    value = $(this).attr('datavalue');
+                    $('.field-date-format-wrapper-<?php echo $id; ?> .format-value input').val(value);
+
+                })
+
+            });</script>
+
+
+        <?php
+
+    }
 
 
 	public function generate_field_datepicker( $option ){
@@ -265,6 +405,60 @@ class wpThemeSettings {
 	
 		echo "<script>jQuery(document).ready(function($) { $('#$id').datepicker({dateFormat : 'dd-mm-yy'});});</script>";
 	}
+
+
+    public function generate_linear_gradient( $option ){
+
+        $id 			= isset( $option['id'] ) ? $option['id'] : "";
+        $placeholder 	= isset( $option['placeholder'] ) ? $option['placeholder'] : "";
+        $direction 	= isset( $option['direction'] ) ? $option['direction'] : "";
+        $args 	= isset( $option['args'] ) ? $option['args'] : "";
+        $value 	 		= get_option( $id );
+
+
+        ?>
+        <div class="field-linear-gradient-wrapper field-linear-gradient-wrapper-<?php echo $id; ?>">
+
+            <select name="<?php echo $id; ?>[direction]">
+                <option value="to bottom">to bottom</option>
+                <option value="to top">to top</option>
+                <option value="to right">to right</option>
+
+
+
+
+            </select>
+
+            <div class="gr-preview">
+                Preview
+            </div>
+        </div>
+
+
+        <style type="text/css">
+            .field-linear-gradient-wrapper-<?php echo $id; ?> .gr-preview{
+                height: 20px;
+                width: 200px;
+                text-align: center;
+            }
+        </style>
+
+        <?php
+
+        //var_dump(plugins_url('/', __FILE__));
+
+        //echo "<input type='text' class='regular-text' name='$id' id='$id' placeholder='$placeholder' value='$value'
+        // />";
+
+
+        //echo "<script>jQuery(document).ready(function($) { $('#$id').datepicker({dateFormat : 'dd-mm-yy'});});
+        //</script>";
+    }
+
+
+
+
+
 	
 	public function generate_field_colorpicker( $option ){
 		
@@ -473,6 +667,11 @@ class wpThemeSettings {
         $icons		    = is_array( $args ) ? $args : $this->generate_args_from_string( $args, $option );
 
         $value = !empty($value) ? $value : $default;
+
+
+
+
+
 
         ?>
         <div class="field-icon-wrapper field-icon-wrapper-<?php echo $id; ?>">
@@ -1608,6 +1807,11 @@ class wpThemeSettings {
         if( strpos( $string, 'WPADMINSETTINGS_POSTS_ARRAY' ) !== false ) return $this->get_posts_array();
         if( strpos( $string, 'WPADMINSETTINGS_POST_TYPES_ARRAY' ) !== false ) return $this->get_post_types_array();
 		if( strpos( $string, 'WPADMINSETTINGS_TAX_' ) !== false ) return $this->get_taxonomies_array( $string );
+        if( strpos( $string, 'WPADMINSETTINGS_USER_ROLES' ) !== false ) return $this->get_user_roles_array();
+        if( strpos( $string, 'WPADMINSETTINGS_MENUS' ) !== false ) return $this->get_menus_array();
+
+        if( strpos( $string, 'WPADMINSETTINGS_SIDEBARS_ARRAY' ) !== false ) return $this->get_sidebars_array();
+
 
         if( strpos( $string, 'WPADMINSETTINGS_THUMB_SIEZS_ARRAY' ) !== false ) return $this->get_thumb_sizes_array();
         if( strpos( $string, 'WPADMINSETTINGS_FONTAWESOME_ARRAY' ) !== false ) return $this->get_font_aws_array();
@@ -1644,6 +1848,43 @@ class wpThemeSettings {
 		
 		return apply_filters( 'WPADMINSETTINGS_PAGES_ARRAY', $pages_array );
 	}
+
+    public function get_menus_array(){
+
+        $menus = get_registered_nav_menus();
+
+
+
+        return apply_filters( 'WPADMINSETTINGS_MENUS_ARRAY', $menus );
+    }
+
+    public function get_sidebars_array(){
+
+        global $wp_registered_sidebars;
+        $sidebars = $wp_registered_sidebars;
+
+        foreach ($sidebars as $index => $sidebar){
+
+            $sidebars_name[$index] = $sidebar['name'];
+        }
+
+
+        return apply_filters( 'WPADMINSETTINGS_SIDEBARS_ARRAY', $sidebars_name );
+    }
+
+    public function get_user_roles_array(){
+
+        $roles = get_editable_roles();
+
+        foreach ($roles as $index => $data){
+
+            $role_name[$index] = $data['name'];
+        }
+
+        return apply_filters( 'WPADMINSETTINGS_USER_ROLES', $role_name );
+    }
+
+
 
     public function get_post_types_array(){
 
