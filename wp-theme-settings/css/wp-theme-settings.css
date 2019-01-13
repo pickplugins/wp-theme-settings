@@ -368,6 +368,74 @@
     border-bottom-left-radius: 3px;
 }
 
+
+
+/*field-color-palette-wrapper*/
+
+.field-color-palette-wrapper{
+    margin-bottom: 15px;
+}
+
+.field-color-palette-wrapper input[type='radio']{
+    display: none;
+}
+
+.field-color-palette-wrapper .sw-button{
+    background: #eee;
+    margin: 0;
+    border: 1px solid rgba(0,0,0,0);
+    display: inline-block;
+    height: 30px;
+    width: 30px;
+
+}
+
+.field-color-palette-wrapper label.checked{
+
+}
+.field-color-palette-wrapper label.checked .sw-button {
+    background: #ddd;
+    border: 1px dashed #DDE;
+}
+
+.field-color-palette-wrapper label:hover .sw-button {
+    transform: scale(1.4);
+}
+
+
+
+/*field-color-palette-wrapper-multi*/
+
+.field-color-palette-wrapper-multi{
+    margin-bottom: 15px;
+}
+
+.field-color-palette-wrapper-multi input[type='checkbox']{
+    display: none;
+}
+
+.field-color-palette-wrapper-multi .sw-button{
+    background: #eee;
+    margin: 0;
+    border: 1px solid rgba(0,0,0,0);
+    display: inline-block;
+    height: 30px;
+    width: 30px;
+
+}
+
+.field-color-palette-wrapper-multi label.checked{
+
+}
+.field-color-palette-wrapper-multi label.checked .sw-button {
+    background: #ddd;
+    border: 1px dashed #DDE;
+}
+
+.field-color-palette-wrapper-multi label:hover .sw-button {
+    transform: scale(1.4);
+}
+
 /*field-switch-img-wrapper*/
 
 .field-switch-img-wrapper{
@@ -467,9 +535,145 @@
 
 
 
+/* field-dimensions */
 
 
 
+.field-dimensions{}
+
+
+.field-dimensions .item{}
+
+.field-dimensions .field-title{
+    min-width: 110px;
+    display: inline-block;
+}
+.field-dimensions .input-wrapper{
+    display: inline-block;
+}
+.field-dimensions .input-wrapper input{
+    width: 70px;
+}
+
+
+
+
+
+.field-icon-wrapper{}
+
+.field-icon-wrapper .icon-wrapper{}
+.field-icon-wrapper .icon-wrapper span{
+    font-size: 18px;
+    background-color: #eee;
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    cursor: pointer;
+}
+
+.field-icon-wrapper .select-icon{}
+
+.field-icon-wrapper .search-icon{
+    display: none;
+}
+
+
+.field-icon-wrapper .icon-list.active .search-icon{
+    display: inline-block;
+}
+.field-icon-wrapper .icon-list{
+    margin-top: 15px;
+}
+
+.field-icon-wrapper .icon-list ul{
+    display: none;
+    height: 200px;
+    overflow: scroll;
+    background: #eee;
+    padding: 10px;
+    margin: 5px;
+}
+
+.field-icon-wrapper .icon-list.active ul{
+    display: block;
+}
+
+.field-icon-wrapper .icon-list li{
+    display: inline-block;
+    border: 1px solid #ddd;
+    padding: 0;
+    margin: 2px 0;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    font-size: 19px;
+    text-align: center;
+}
+
+.field-icon-wrapper .icon-list li{}
+
+
+
+.field-icon-wrapper .icon-list{}
+
+
+/*field-icon-multi-wrapper*/
+
+
+.field-icon-multi-wrapper{}
+
+.field-icon-multi-wrapper .icons-wrapper{}
+.field-icon-multi-wrapper .icons-wrapper .item{
+    font-size: 18px;
+    background-color: #eee;
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    display: inline-block;
+    margin: 2px;
+}
+
+
+
+
+
+.field-icon-multi-wrapper .select-icon{}
+
+.field-icon-multi-wrapper .search-icon{
+    display: none;
+}
+
+
+.field-icon-multi-wrapper .icon-list.active .search-icon{
+    display: inline-block;
+}
+.field-icon-multi-wrapper .icon-list{
+    margin-top: 15px;
+}
+
+.field-icon-multi-wrapper .icon-list ul{
+    display: none;
+    height: 200px;
+    overflow: scroll;
+    background: #eee;
+    padding: 10px;
+    margin: 5px;
+}
+
+.field-icon-multi-wrapper .icon-list.active ul{
+    display: block;
+}
+
+.field-icon-multi-wrapper .icon-list li{
+    display: inline-block;
+    border: 1px solid #ddd;
+    padding: 0;
+    margin: 2px 0;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    font-size: 19px;
+    text-align: center;
+}
 
 
 

@@ -27,9 +27,11 @@ An easy option and settings management framework for WordPress, Developer friend
 * Editor
 * Link Color
 * Switch
-* Switch Multi
+* Switch multi
 * Switch image
 * Dimensions (width, height, custom)
+* Icon
+* Icon multi
 
 #### Special Fields
 
@@ -47,7 +49,14 @@ An easy option and settings management framework for WordPress, Developer friend
 * Slider
 * Spinner
 * Radio Palette
-
+* Menu Select
+* Sidebar/widgets Select
+* Comments Select
+* User Select
+* User Multi Select
+* User Role Select
+* Date format select
+* Time format
 
 ### How to use
 

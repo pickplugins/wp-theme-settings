@@ -29,28 +29,34 @@ An easy option and settings management framework for WordPress, Developer friend
 * Switch
 * Switch multi
 * Switch image
-
+* Dimensions (width, height, custom)
+* Icon
+* Icon multi
 
 #### Special Fields
 
 * Page list Field (select, select2, radio, checkbox)
 * Terms(category) list Field (select, select2, radio, checkbox)
 * Thumbnail size list Field (select, select2, radio, checkbox)
+* Posts (select, select2, radio, checkbox)
+* Post-Types list field (select, select2, radio, checkbox)
 
 #### Upcoming
 
 * Color Gradient
-* Dimensions
 * Divide
-* Image Select
 * Info
 * Slider
 * Spinner
-* Select Post-Types
-* Select Posts
 * Radio Palette
-* Radio Image
-
+* Menu Select
+* Sidebar/widgets Select
+* Comments Select
+* User Select
+* User Multi Select
+* User Role Select
+* Date format select
+* Time format
 
 ### How to use
 

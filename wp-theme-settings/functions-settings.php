@@ -19,8 +19,54 @@ $page_1_options = array(
 			'description' 	=> __('This is section details','user-profile'),
 			'options' 	=> array(
 
+                array(
+                    'id'		=> 'icon_multi_field',
+                    'title'		=> __('icon multi Field','text-domain'),
+                    'details'	=> __('Description of icon field','text-domain'),
+                    'type'		=> 'icon_multi',
+                    'default'		=> array('fas fa-bomb','fas fa-address-book'),
+                    'args'		=> 'WPADMINSETTINGS_FONTAWESOME_ARRAY',
+                ),
+
+                array(
+                    'id'		=> 'icon_field',
+                    'title'		=> __('icon Field','text-domain'),
+                    'details'	=> __('Description of icon field','text-domain'),
+                    'type'		=> 'icon',
+                    'default'		=> 'fas fa-bomb',
+                    'args'		=> 'WPADMINSETTINGS_FONTAWESOME_ARRAY',
+                ),
 
 
+
+                array(
+                    'id'		=> 'color_palette_field',
+                    'title'		=> __('color palette Field','text-domain'),
+                    'details'	=> __('Description of color palette field','text-domain'),
+                    'type'		=> 'color_palette',
+                    'colors'		=> array('#dd3333','#1e73be','#8224e3','#e07000','#1e73be','#8224e3'),
+//                    'args'		=> array(
+//                        'size'	=> '50px',
+//                        'type'	=> 'round', // round, semi-round, square
+//                        'style'	=> '',
+//                    ),
+
+                ),
+
+
+                array(
+                    'id'		=> 'color_palette_multi_field',
+                    'title'		=> __('color palette multi Field','text-domain'),
+                    'details'	=> __('Description of color palette multi field','text-domain'),
+                    'type'		=> 'color_palette_multi',
+                    'colors'		=> array('#dd3333','#1e73be','#8224e3','#e07000','#1e73be','#8224e3'),
+//                    'args'		=> array(
+//                        'size'	=> '50px',
+//                        'type'	=> 'round', // round, semi-round, square
+//                        'style'	=> '',
+//                    ),
+
+                ),
 
 
 
@@ -153,13 +199,10 @@ $page_1_options = array(
 
 
 
-                array(
-                    'id'		=> 'thumb_sizes_field',
-                    'title'		=> __('Thumbnail sizes Field','text-domain'),
-                    'details'	=> __('Description of select Thumbnail sizes field','text-domain'),
-                    'type'		=> 'thumb_sizes',
 
-                ),
+
+
+
 
                 array(
                     'id'		=> 'checkbox_field',
@@ -221,11 +264,19 @@ $page_1_options = array(
                     'details'	=> __('Description of multi text field','user-profile'),
                     'type'		=> 'text_multi',
                     'placeholder' => __('Text value','text-domain'),
-
-
                 ),
 
-
+                array(
+                    'id'		=> 'text_dimensions_field',
+                    'title'		=> __('Dimensions Field','user-profile'),
+                    'details'	=> __('Description of Dimensions field','user-profile'),
+                    'type'		=> 'dimensions',
+                    'placeholder' => __('Text value','text-domain'),
+                    'args'		=> array(
+                        'width'	=> __('Width','text-domain'),
+                        'height'	=> __('Height','text-domain'),
+                    ),
+                ),
 
                 array(
                     'id'		=> 'datepicker_field',
@@ -277,6 +328,35 @@ $page_1_options = array(
                     'type'		=> 'select2',
                     'args'		=> 'WPADMINSETTINGS_PAGES_ARRAY',
                 ),
+
+
+
+                array(
+                    'id'		=> 'select2_posts_list_field',
+                    'title'		=> __('Multi Select2 for post list  Field','text-domain'),
+                    'details'	=> __('Description of multi select2 for Page list field','text-domain'),
+                    'type'		=> 'select2',
+                    'args'		=> 'WPADMINSETTINGS_POSTS_ARRAY',
+                ),
+
+                array(
+                    'id'		=> 'select2_post_types_list_field',
+                    'title'		=> __('Multi Select2 for post types list  Field','text-domain'),
+                    'details'	=> __('Description of multi select2 for post types list field','text-domain'),
+                    'type'		=> 'select2',
+                    'args'		=> 'WPADMINSETTINGS_POST_TYPES_ARRAY',
+                ),
+
+
+                array(
+                    'id'		=> 'thumb_sizes_field2',
+                    'title'		=> __('Thumbnail sizes Field 2','text-domain'),
+                    'details'	=> __('Description of select Thumbnail sizes field','text-domain'),
+                    'type'		=> 'select2',
+                    'args'		=> 'WPADMINSETTINGS_THUMB_SIEZS_ARRAY',
+                ),
+
+
 
                 array(
                     'id'		=> 'select2_tax_list_field',
@@ -376,9 +456,11 @@ $page_1_options = array(
 $args = array(
 	'add_in_menu'       => true,
 	'menu_type'         => 'main',
+    'menu_name'         => __( 'Admin Settings', 'user-profile' ),
 	'menu_title'        => __( 'Admin Settings', 'user-profile' ),
 	'page_title'        => __( 'Admin Settings', 'user-profile' ),
 	'menu_page_title'   => __( 'Admin Settings', 'user-profile' ),
+
 	'capability'        => "manage_options",
 	'menu_slug'         => "admin-settings",
     'menu_icon'         => "dashicons-image-filter",
