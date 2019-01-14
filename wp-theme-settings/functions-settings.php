@@ -18,13 +18,13 @@ if ( ! defined('ABSPATH')) exit;  // if direct access
 
 $page_1_options = array(
 
-    'page_nav' 	=> __( 'Nav Title 1', 'user-profile' ),
+    'page_nav' 	=> __( 'Nav Title 1', 'text-domain' ),
     'priority' => 10,
 	'page_settings' => array(
 		
 		'section_1' => array(
-			'title' 	=> 	__('This is Section Title','user-profile'),
-			'description' 	=> __('This is section details','user-profile'),
+			'title' 	=> 	__('This is Section Title','text-domain'),
+			'description' 	=> __('This is section details','text-domain'),
 			'options' 	=> array(
 
 
@@ -157,13 +157,13 @@ $page_1_options = array(
 
 $page_2_options = array(
 
-    'page_nav' 	=> __( 'Nav Title 2', 'user-profile' ),
+    'page_nav' 	=> __( 'Nav Title 2', 'text-domain' ),
     'priority' => 10,
     'page_settings' => array(
 
         'section_1' => array(
-            'title' 	=> 	__('This is Section Title','user-profile'),
-            'description' 	=> __('This is section details','user-profile'),
+            'title' 	=> 	__('This is Section Title','text-domain'),
+            'description' 	=> __('This is section details','text-domain'),
             'options' 	=> array(
 
 
@@ -229,29 +229,29 @@ $page_2_options = array(
                     'args'		=> array('min' => '0','max' => '100','step' => '10'),
                 ),
 
-                array(
-                    'id'		=> 'select_field',
-                    'title'		=> __('Select Field','text-domain'),
-                    'details'	=> __('Description of select field','text-domain'),
-                    'type'		=> 'select',
-                    'args'		=> array(
-                        'option_1'	=> __('Option 1','text-domain'),
-                        'option_2'	=> __('Option 2','text-domain'),
-                    ),
-                ),
+array(
+    'id'		=> 'select_field',
+    'title'		=> __('Select Field','text-domain'),
+    'details'	=> __('Description of select field','text-domain'),
+    'type'		=> 'select',
+    'args'		=> array(
+        'option_1'	=> __('Option 1','text-domain'),
+        'option_2'	=> __('Option 2','text-domain'),
+    ),
+),
 
-                array(
-                    'id'		=> 'select_multi_field',
-                    'title'		=> __('Multi Select  Field','text-domain'),
-                    'details'	=> __('Description of multi select field','text-domain'),
-                    'type'		=> 'select_multi',
-                    'args'		=> array(
-                        'option_1'	=> __('Option 1','text-domain'),
-                        'option_2'	=> __('Option 2','text-domain'),
-                        'option_3'	=> __('Option 3','text-domain'),
-                        'option_4'	=> __('Option 4','text-domain'),
-                    ),
-                ),
+array(
+    'id'		=> 'select_multi_field',
+    'title'		=> __('Multi Select  Field','text-domain'),
+    'details'	=> __('Description of multi select field','text-domain'),
+    'type'		=> 'select_multi',
+    'args'		=> array(
+        'option_1'	=> __('Option 1','text-domain'),
+        'option_2'	=> __('Option 2','text-domain'),
+        'option_3'	=> __('Option 3','text-domain'),
+        'option_4'	=> __('Option 4','text-domain'),
+    ),
+),
 
                 array(
                     'id'		=> 'select2_field',
@@ -306,13 +306,13 @@ $page_2_options = array(
 
 $page_3_options = array(
 
-    'page_nav' 	=> __( 'Nav Title 3', 'user-profile' ),
+    'page_nav' 	=> __( 'Nav Title 3', 'text-domain' ),
     'priority' => 10,
     'page_settings' => array(
 
         'section_1' => array(
-            'title' 	=> 	__('This is Section Title','user-profile'),
-            'description' 	=> __('This is section details','user-profile'),
+            'title' 	=> 	__('This is Section Title','text-domain'),
+            'description' 	=> __('This is section details','text-domain'),
             'options' 	=> array(
 
 
@@ -333,8 +333,8 @@ $page_3_options = array(
 
                 array(
                     'id'		=> 'textarea_field',
-                    'title'		=> __('Txtarea Field','user-profile'),
-                    'details'	=> __('Description of textarea field','user-profile'),
+                    'title'		=> __('Txtarea Field','text-domain'),
+                    'details'	=> __('Description of textarea field','text-domain'),
                     'type'		=> 'textarea',
                     'placeholder' => __('Textarea value','text-domain'),
 
@@ -345,32 +345,32 @@ $page_3_options = array(
 
                 array(
                     'id'		=> 'number_field',
-                    'title'		=> __('Text Field','user-profile'),
-                    'details'	=> __('Description of number field','user-profile'),
+                    'title'		=> __('Number Field','text-domain'),
+                    'details'	=> __('Description of number field','text-domain'),
                     'type'		=> 'number',
                     'placeholder' => __('123456','text-domain'),
                 ),
 
-                array(
-                    'id'		=> 'text_field',
-                    'title'		=> __('Text Field','user-profile'),
-                    'details'	=> __('Description of text field','user-profile'),
-                    'type'		=> 'text',
-                    'placeholder' => __('Text value','text-domain'),
-                ),
+array(
+    'id'		    => 'some_id_text_field',
+    'title'		    => __('Text Field','text-domain'),
+    'details'	    => __('Description of text field','text-domain'),
+    'type'		    => 'text',
+    'placeholder'   => __('Text value','text-domain'),
+),
 
-                array(
-                    'id'		=> 'text_multi_field',
-                    'title'		=> __('Multi Text Field','user-profile'),
-                    'details'	=> __('Description of multi text field','user-profile'),
-                    'type'		=> 'text_multi',
-                    'placeholder' => __('Text value','text-domain'),
-                ),
+array(
+    'id'		    => 'text_multi_field',
+    'title'		    => __('Multi Text Field','text-domain'),
+    'details'	    => __('Description of multi text field','text-domain'),
+    'type'		    => 'text_multi',
+    'placeholder'   => __('Text value','text-domain'),
+),
 
                 array(
                     'id'		=> 'text_dimensions_field',
-                    'title'		=> __('Dimensions Field','user-profile'),
-                    'details'	=> __('Description of Dimensions field','user-profile'),
+                    'title'		=> __('Dimensions Field','text-domain'),
+                    'details'	=> __('Description of Dimensions field','text-domain'),
                     'type'		=> 'dimensions',
                     'placeholder' => __('Text value','text-domain'),
                     'args'		=> array(
@@ -444,13 +444,13 @@ $page_3_options = array(
 
 $page_4_options = array(
 
-    'page_nav' 	=> __( 'Nav Title 4', 'user-profile' ),
+    'page_nav' 	=> __( 'Nav Title 4', 'text-domain' ),
     'priority' => 10,
     'page_settings' => array(
 
         'section_1' => array(
-            'title' 	=> 	__('This is Section Title','user-profile'),
-            'description' 	=> __('This is section details','user-profile'),
+            'title' 	=> 	__('This is Section Title','text-domain'),
+            'description' 	=> __('This is section details','text-domain'),
             'options' 	=> array(
 
 
@@ -508,8 +508,8 @@ $page_4_options = array(
 
                 array(
                     'id'		=> 'wp_editor_field',
-                    'title'		=> __('wp_editor Field','user-profile'),
-                    'details'	=> __('Description of wp_editor field, please see detail here https://codex.wordpress.org/Function_Reference/wp_editor','user-profile'),
+                    'title'		=> __('wp_editor Field','text-domain'),
+                    'details'	=> __('Description of wp_editor field, please see detail here https://codex.wordpress.org/Function_Reference/wp_editor','text-domain'),
                     'type'		=> 'wp_editor',
                     'editor_settings'=>array('textarea_name'=>'wp_editor_field', 'editor_height'=>'150px'),
                     'placeholder' => __('wp_editor value','text-domain'),
@@ -537,8 +537,8 @@ $page_4_options = array(
 
                 array(
                     'id'		=> 'colorpicker_multi_field',
-                    'title'		=> __('Multi colorpicker Field','user-profile'),
-                    'details'	=> __('Description of multi colorpicker field','user-profile'),
+                    'title'		=> __('Multi colorpicker Field','text-domain'),
+                    'details'	=> __('Description of multi colorpicker field','text-domain'),
                     'type'		=> 'colorpicker_multi',
                     'default'		=> array('#dd3333','#1e73be','#8224e3'),
                 ),
@@ -576,10 +576,10 @@ $page_4_options = array(
 $args = array(
 	'add_in_menu'       => true,
 	'menu_type'         => 'main',
-    'menu_name'         => __( 'Admin Settings', 'user-profile' ),
-	'menu_title'        => __( 'Admin Settings', 'user-profile' ),
-	'page_title'        => __( 'Admin Settings', 'user-profile' ),
-	'menu_page_title'   => __( 'Admin Settings', 'user-profile' ),
+    'menu_name'         => __( 'Admin Settings', 'text-domain' ),
+	'menu_title'        => __( 'Admin Settings', 'text-domain' ),
+	'page_title'        => __( 'Admin Settings', 'text-domain' ),
+	'menu_page_title'   => __( 'Admin Settings', 'text-domain' ),
 
 	'capability'        => "manage_options",
 	'menu_slug'         => "admin-settings",

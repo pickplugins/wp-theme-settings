@@ -238,6 +238,16 @@
 }
 
 
+/*field-text-multi-wrapper*/
+
+.field-text-multi-wrapper .field-list{
+    margin-top: 10px;
+}
+
+.field-text-multi-wrapper .field-list .item{
+    margin: 5px 0;
+}
+
 
 /* Collapsible */
 

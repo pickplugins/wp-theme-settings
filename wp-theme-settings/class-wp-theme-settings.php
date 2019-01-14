@@ -935,44 +935,36 @@ class wpThemeSettings {
         $values 	 		= get_option( $id );
 
 
-        //var_dump($values);
         ?>
 
         <script>jQuery(document).ready(function($) {
                 html_<?php echo $id; ?> = '<div class=""><input type="text" class="regular-text" name="<?php echo $id?>[]"  placeholder="<?php echo $placeholder; ?>" value="" /><span class="button" onclick="$(this).parent().remove()">X</span></div>';
             });</script>
 
-        <span class="button" onclick="$('#<?php echo $id; ?>').append(html_<?php echo $id; ?>)">Add</span>
-        <div class="field-list" id="<?php echo $id; ?>">
+        <div class="field-text-multi-wrapper field-text-multi-wrapper-<?php echo $id; ?>">
+            <span class="button" onclick="$('#<?php echo $id; ?>').append(html_<?php echo $id; ?>)">Add</span>
+            <div class="field-list" id="<?php echo $id; ?>">
 
-            <?php
-            if(!empty($values)):
-
-                foreach ($values as $value):
-
-                    ?>
-                    <div class="">
-                        <input type='text' class='regular-text' name='<?php echo $id?>[]'  placeholder='<?php echo $placeholder; ?>' value='<?php echo $value; ?>' /><span class="button" onclick="$(this).parent().remove()">X</span>
-                    </div>
-                    <?php
-
-                endforeach;
-
-            else:
-
-                ?>
-                <div class="">
-                    <input type='text' class='regular-text' name='<?php echo $id?>[]'  placeholder='<?php echo $placeholder; ?>' value='' /><span class="button" onclick="$(this).parent().remove()">X</span>
-                </div>
                 <?php
-
-            endif;
-
-            ?>
-
-
-
+                if(!empty($values)):
+                    foreach ($values as $value):
+                        ?>
+                        <div class="item">
+                            <input type='text' class='regular-text' name='<?php echo $id?>[]'  placeholder='<?php echo $placeholder; ?>' value='<?php echo $value; ?>' /><span class="button" onclick="$(this).parent().remove()">X</span>
+                        </div>
+                    <?php
+                    endforeach;
+                else:
+                    ?>
+                    <div class="item">
+                        <input type='text' class='regular-text' name='<?php echo $id?>[]'  placeholder='<?php echo $placeholder; ?>' value='' /><span class="button" onclick="$(this).parent().remove()">X</span>
+                    </div>
+                <?php
+                endif;
+                ?>
+            </div>
         </div>
+
 
         <?php
 

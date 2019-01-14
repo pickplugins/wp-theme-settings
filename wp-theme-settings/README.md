@@ -5,6 +5,8 @@ An easy option and settings management framework for WordPress, Developer friend
 
 ## Input fields
 
+* Text
+* Text multi
 * Select
 * Select multi
 * Select2
@@ -12,28 +14,29 @@ An easy option and settings management framework for WordPress, Developer friend
 * Radio
 * Textarea
 * Number
-* Text
-* Text multi
 * Range
 * Range with input
 * Color picker
 * Datepicker
-* FAQ
-* Grid
-* Custom_html
-* Repeatable
 * Media
 * Media Gallery
-* Editor
-* Link Color
 * Switch
 * Switch multi
 * Switch image
 * Dimensions (width, height, custom)
+* Editor
+* Link Color
+* Repeatable
 * Icon
 * Icon multi
 * Date format 
 * Time format 
+* FAQ
+* Grid
+* Custom_html
+* Color palette
+* Color Palette Multi
+
 
 #### Special Fields
 
