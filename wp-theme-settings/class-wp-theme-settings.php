@@ -143,14 +143,19 @@ class wpThemeSettings {
     public function generate_media( $option ){
 
         $id			= isset( $option['id'] ) ? $option['id'] : "";
+        $placeholder	= isset( $option['placeholder'] ) ? $option['placeholder'] : "";
+
         $value		= get_option( $id );
         $media_url	= wp_get_attachment_url( $value );
         $media_type	= get_post_mime_type( $value );
         $media_title= get_the_title( $value );
 
+
+        $media_url = !empty($media_url) ? $media_url : $placeholder;
+
         wp_enqueue_media();
 
-        echo "<div class='media_preview' style='width: 150px;margin-bottom: 10px;background: #eee;padding: 15px 5px;    text-align: center;border-radius: 5px;'>";
+        echo "<div class='media_preview' style='width: 150px;margin-bottom: 10px;background: #eee;padding: 5px;    text-align: center;'>";
 
         if( "audio/mpeg" == $media_type ){
 
@@ -395,15 +400,17 @@ class wpThemeSettings {
 		
 		$id 			= isset( $option['id'] ) ? $option['id'] : "";
 		$placeholder 	= isset( $option['placeholder'] ) ? $option['placeholder'] : "";
+        $default 	    = isset( $option['default'] ) ? $option['default'] : "";
+        $date_format	= isset( $option['date_format'] ) ? $option['date_format'] : "dd-mm-yy";
 		$value 	 		= get_option( $id );
-		
 
-		//var_dump(plugins_url('/', __FILE__));
-		
+        $value          = !empty($value) ?$value : $default;
+
+
 		echo "<input type='text' class='regular-text' name='$id' id='$id' placeholder='$placeholder' value='$value' />";
 		
 	
-		echo "<script>jQuery(document).ready(function($) { $('#$id').datepicker({dateFormat : 'dd-mm-yy'});});</script>";
+		echo "<script>jQuery(document).ready(function($) { $('#$id').datepicker({dateFormat : '$date_format'});});</script>";
 	}
 
 
@@ -1076,19 +1083,115 @@ class wpThemeSettings {
 
                                     <div><?php echo $name; ?></div>
 
-                                    <?php if($type == 'text'):?>
-                                    <input type="text" class="regular-text" name="<?php echo $id; ?>[<?php echo $index; ?>][<?php echo $item_id; ?>]" placeholder="" value="<?php echo esc_html($val[$item_id]); ?>">
+                                    <?php if($type == 'text'):
+                                        $default = isset($field['default']) ? $field['default'] : '';
+
+                                        $value = !empty($val[$item_id]) ? $val[$item_id] : $default;
+
+                                        ?>
+                                    <input type="text" class="regular-text" name="<?php echo $id; ?>[<?php echo $index; ?>][<?php echo $item_id; ?>]" placeholder="" value="<?php echo esc_html($value); ?>">
+
+
+                                    <?php elseif($type == 'number'):
+                                        $default = isset($field['default']) ? $field['default'] : '';
+
+                                        $value = !empty($val[$item_id]) ? $val[$item_id] : $default;
+
+                                        ?>
+                                        <input type="number" class="regular-text" name="<?php echo $id; ?>[<?php echo $index; ?>][<?php echo $item_id; ?>]" placeholder="" value="<?php echo esc_html($value); ?>">
+
+
+                                    <?php elseif($type == 'email'):
+                                        $default = isset($field['default']) ? $field['default'] : '';
+
+                                        $value = !empty($val[$item_id]) ? $val[$item_id] : $default;
+
+                                        ?>
+                                        <input type="email" class="regular-text" name="<?php echo $id; ?>[<?php echo $index; ?>][<?php echo $item_id; ?>]" placeholder="" value="<?php echo esc_html($value); ?>">
+
+
+
+
+
+
+
+
+
+                                    <?php elseif($type == 'textarea'):
+                                        $default = isset($field['default']) ? $field['default'] : '';
+
+                                        $value = !empty($val[$item_id]) ? $val[$item_id] : $default;
+
+                                        ?>
+                                    <textarea name="<?php echo $id; ?>[<?php echo $index; ?>][<?php echo $item_id; ?>]"><?php echo esc_html($value); ?></textarea>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                                     <?php elseif($type == 'select'):
                                         $args = isset($field['args']) ? $field['args'] : array();
+                                        $default = isset($field['default']) ? $field['default'] : '';
+                                        $value = !empty($val[$item_id]) ? $val[$item_id] : $default;
+
                                         ?>
-                                    <select class="">
-                                        <?php foreach ($args as $argIndex => $argName):?>
-                                        <option value="<?php echo $argIndex; ?>"><?php echo $argName; ?></option>
+                                    <select class="" name="<?php echo $id; ?>[<?php echo $index; ?>][<?php echo $item_id; ?>]">
+                                        <?php foreach ($args as $argIndex => $argName):
+                                            $selected = ($argIndex == $value) ? 'selected' : '';
+                                            ?>
+                                        <option <?php echo $selected; ?>  value="<?php echo $argIndex; ?>"><?php echo $argName; ?></option>
 
                                         <?php endforeach; ?>
 
                                     </select>
+
+
+                                    <?php elseif($type == 'radio'):
+                                        $args = isset($field['args']) ? $field['args'] : array();
+                                        $default = isset($field['default']) ? $field['default'] : '';
+                                        $value = !empty($val[$item_id]) ? $val[$item_id] : $default;
+
+                                        ?>
+
+                                            <?php foreach ($args as $argIndex => $argName):
+                                                $checked = ($argIndex == $value) ? 'checked' : '';
+                                                ?>
+                                        <label class="" >
+                                                <input  type="radio" name="<?php echo $id; ?>[<?php echo $index; ?>][<?php echo $item_id; ?>]" <?php echo $checked; ?>  value="<?php echo $argIndex; ?>"><?php echo $argName; ?></input>
+                                        </label>
+
+                                            <?php endforeach; ?>
+
+                                    <?php elseif($type == 'checkbox'):
+                                        $args = isset($field['args']) ? $field['args'] : array();
+                                        $default = isset($field['default']) ? $field['default'] : '';
+                                        $value = !empty($val[$item_id]) ? $val[$item_id] : $default;
+
+                                        ?>
+
+                                        <?php foreach ($args as $argIndex => $argName):
+                                        $checked = in_array($argIndex, $value ) ? 'checked' : '';
+                                        ?>
+                                        <label class="" >
+                                            <input  type="checkbox" name="<?php echo $id; ?>[<?php echo $index; ?>][<?php echo $item_id; ?>][]" <?php echo $checked; ?>  value="<?php echo $argIndex; ?>"><?php echo $argName; ?></input>
+                                        </label>
+
+                                    <?php endforeach; ?>
+
+
+
 
 
                                     <?php endif;?>
@@ -1141,9 +1244,13 @@ class wpThemeSettings {
     public function generate_field_number( $option ){
 		
 		$id 			= isset( $option['id'] ) ? $option['id'] : "";
+        $default 			= isset( $option['default'] ) ? $option['default'] : "";
 		$placeholder 	= isset( $option['placeholder'] ) ? $option['placeholder'] : "";
 		$value 	 		= get_option( $id );
-		
+
+        $value = !empty($value) ? $value : $default;
+
+
 		echo "<input type='number' class='regular-text' name='$id' id='$id' placeholder='$placeholder' value='$value' />";
 	}
 	
@@ -1217,15 +1324,20 @@ class wpThemeSettings {
 
     public function generate_field_select2( $option ){
         $id 		= isset( $option['id'] ) ? $option['id'] : "";
+        $default 		= isset( $option['default'] ) ? $option['default'] : array();
         $args 		= isset( $option['args'] ) ? $option['args'] : array();
         $args		= is_array( $args ) ? $args : $this->generate_args_from_string( $args, $option );
         $value		= get_option( $id );
+        $value      = !empty($value) ?  $value : $default;
+
         $multiple 	= isset( $option['multiple'] ) ? $option['multiple'] : '';
 
 
         if($multiple):
             $value = !empty($value) ? $value : array();
         endif;
+
+        //var_dump($value);
 
         wp_enqueue_style('select2', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css' );
         wp_enqueue_script('select2', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js', array('jquery') );
@@ -1250,11 +1362,12 @@ class wpThemeSettings {
     public function generate_field_checkbox( $option ){
 		
 		$id				= isset( $option['id'] ) ? $option['id'] : "";
+        $default 		= isset( $option['default'] ) ? $option['default'] : array();
 		$args			= isset( $option['args'] ) ? $option['args'] : array();
 		$args			= is_array( $args ) ? $args : $this->generate_args_from_string( $args );
 		$option_value	= get_option( $id );
 
-
+        $option_value      = !empty($option_value) ?  $option_value : $default;
 		//var_dump($option_value);
 
 		echo "<fieldset>";
@@ -1390,15 +1503,18 @@ class wpThemeSettings {
 	public function generate_field_radio( $option ){
 
 		$id				= isset( $option['id'] ) ? $option['id'] : "";
-		$args			= isset( $option['args'] ) ? $option['args'] : array();
+        $default 		= isset( $option['default'] ) ? $option['default'] : array();
+        $args			= isset( $option['args'] ) ? $option['args'] : array();
 		$args			= is_array( $args ) ? $args : $this->generate_args_from_string( $args );
 		$option_value	= get_option( $id );
+
+        $option_value      = !empty($option_value) ?  $option_value : $default;
 
 		echo "<fieldset>";
 		foreach( $args as $key => $value ):
 
-			$checked = is_array( $option_value ) && in_array( $key, $option_value ) ? "checked" : "";
-			echo "<label for='$id-$key'><input name='{$id}[]' type='radio' id='$id-$key' value='$key' $checked>$value</label><br>";
+			$checked = ( $key == $option_value ) ? "checked" : "";
+			echo "<label for='$id-$key'><input name='{$id}' type='radio' id='$id-$key' value='$key' $checked>$value</label><br>";
 				
 		endforeach;
 		echo "</fieldset>";
@@ -1409,17 +1525,20 @@ class wpThemeSettings {
     public function generate_field_switch( $option ){
 
         $id				= isset( $option['id'] ) ? $option['id'] : "";
+        $default 		= isset( $option['default'] ) ? $option['default'] : '';
         $args			= isset( $option['args'] ) ? $option['args'] : array();
         $args			= is_array( $args ) ? $args : $this->generate_args_from_string( $args );
         $option_value	= get_option( $id );
+
+        $option_value      = !empty($option_value) ?  $option_value : $default;
 
         ?>
         <div class="field-switch-wrapper field-switch-wrapper-<?php echo $id; ?>">
             <?php
             foreach( $args as $key => $value ):
 
-                $checked = is_array( $option_value ) && in_array( $key, $option_value ) ? "checked" : "";
-                ?><label class="<?php echo $checked; ?>" for='<?php echo $id; ?>-<?php echo $key; ?>'><input name='<?php echo $id; ?>[]' type='radio' id='<?php echo $id; ?>-<?php echo $key; ?>' value='<?php echo $key; ?>' <?php echo $checked; ?>><span class="sw-button"><?php echo $value; ?></span></label><?php
+                $checked = ( $key == $option_value ) ? "checked" : "";
+                ?><label class="<?php echo $checked; ?>" for='<?php echo $id; ?>-<?php echo $key; ?>'><input name='<?php echo $id; ?>' type='radio' id='<?php echo $id; ?>-<?php echo $key; ?>' value='<?php echo $key; ?>' <?php echo $checked; ?>><span class="sw-button"><?php echo $value; ?></span></label><?php
 
             endforeach;
             ?>
@@ -1566,10 +1685,12 @@ class wpThemeSettings {
         $id				= isset( $option['id'] ) ? $option['id'] : "";
         $width			= isset( $option['width'] ) ? $option['width'] : "";
         $height			= isset( $option['height'] ) ? $option['height'] : "";
+        $default 		= isset( $option['default'] ) ? $option['default'] : '';
         $args			= isset( $option['args'] ) ? $option['args'] : array();
         $args			= is_array( $args ) ? $args : $this->generate_args_from_string( $args );
         $option_value	= get_option( $id );
 
+        $option_value   = !empty($option_value) ?  $option_value : $default;
 
         ?>
         <div class="field-switch-img-wrapper field-switch-img-wrapper-<?php echo $id; ?>">
@@ -1580,8 +1701,8 @@ class wpThemeSettings {
                 $item_width = isset( $value['width'] ) ? $value['width'] : $width;
                 $item_height = isset( $value['height'] ) ? $value['height'] : $height;
 
-                $checked = is_array( $option_value ) && in_array( $key, $option_value ) ? "checked" : "";
-                ?><label style="width: <?php echo $item_width; ?>;height: <?php echo $item_height; ?>" class="<?php echo $checked; ?>" for='<?php echo $id; ?>-<?php echo $key; ?>'><input name='<?php echo $id; ?>[]' type='radio' id='<?php echo $id; ?>-<?php echo $key; ?>' value='<?php echo $key; ?>' <?php echo $checked; ?>><span class="sw-button"><img src="<?php echo $src; ?>"> </span></label><?php
+                $checked = ( $key == $option_value ) ? "checked" : "";
+                ?><label style="width: <?php echo $item_width; ?>;height: <?php echo $item_height; ?>" class="<?php echo $checked; ?>" for='<?php echo $id; ?>-<?php echo $key; ?>'><input name='<?php echo $id; ?>' type='radio' id='<?php echo $id; ?>-<?php echo $key; ?>' value='<?php echo $key; ?>' <?php echo $checked; ?>><span class="sw-button"><img src="<?php echo $src; ?>"> </span></label><?php
 
             endforeach;
             ?>
@@ -1616,10 +1737,12 @@ class wpThemeSettings {
     public function generate_field_switch_multi( $option ){
 
         $id				= isset( $option['id'] ) ? $option['id'] : "";
+        $default 		= isset( $option['default'] ) ? $option['default'] : '';
         $args			= isset( $option['args'] ) ? $option['args'] : array();
         $args			= is_array( $args ) ? $args : $this->generate_args_from_string( $args );
         $option_value	= get_option( $id );
 
+        $option_value      = !empty($option_value) ?  $option_value : $default;
         ?>
         <div class="field-switch-multi-wrapper field-switch-multi-wrapper-<?php echo $id; ?>">
             <?php
