@@ -3,6 +3,11 @@ An easy option and settings management framework for WordPress, Developer friend
 
 #### Version: 1.0.0
 
+### WP Theme Settings by [http://pickplugins.com](http://pickplugins.com)
+
+* [Documentation](https://www.pickplugins.com/documentation/wp-theme-settings/?ref=github.com)
+
+
 ## Input fields
 
 * Text
