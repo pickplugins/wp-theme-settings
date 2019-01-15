@@ -100,13 +100,11 @@ class wpThemeSettings {
 			elseif( isset($option['type']) && $option['type'] === 'colorpicker')        $this->generate_field_colorpicker( $option );
             elseif( isset($option['type']) && $option['type'] === 'colorpicker_multi')  $this->generate_field_colorpicker_multi( $option );
             elseif( isset($option['type']) && $option['type'] === 'color_palette')      $this->generate_field_color_palette( $option );
-            elseif( isset($option['type']) && $option['type'] === 'color_palette_multi')
-                $this->generate_field_color_palette_multi( $option );
+            elseif( isset($option['type']) && $option['type'] === 'color_palette_multi') $this->generate_field_color_palette_multi( $option );
 
             elseif( isset($option['type']) && $option['type'] === 'date_format')	    $this->generate_field_date_format( $option );
 
-            elseif( isset($option['type']) && $option['type'] === 'time_format')
-                $this->generate_field_time_format( $option );
+            elseif( isset($option['type']) && $option['type'] === 'time_format')        $this->generate_field_time_format( $option );
 
             elseif( isset($option['type']) && $option['type'] === 'datepicker')	        $this->generate_field_datepicker( $option );
             elseif( isset($option['type']) && $option['type'] === 'faq')	            $this->generate_field_faq( $option );
@@ -128,7 +126,7 @@ class wpThemeSettings {
 
 
 
-			elseif( isset($option['type']) && $option['type'] === $type ) 	do_action( "wp_admin_settings_custom_field_$type", $option );
+			elseif( isset($option['type']) && $option['type'] === $type ) 	do_action( "wp_theme_settings_field_$type", $option );
 
 			if( !empty( $details ) ) echo "<p class='description'>$details</p>";
 		
@@ -1284,15 +1282,19 @@ class wpThemeSettings {
 
 	public function generate_field_select( $option ){
 		
-		$id 	= isset( $option['id'] ) ? $option['id'] : "";
-		$args 	= isset( $option['args'] ) ? $option['args'] : array();	
-		$args	= is_array( $args ) ? $args : $this->generate_args_from_string( $args );
-		$value	= get_option( $id );
-		
-		echo "<select name='$id' id='$id'>";
-		foreach( $args as $key => $name ):
-			$selected = $value == $key ? "selected" : "";
-			echo "<option $selected value='$key'>$name</option>";
+		$id 	    = isset( $option['id'] ) ? $option['id'] : "";
+		$args 	    = isset( $option['args'] ) ? $option['args'] : array();
+        $multiple 	= isset( $option['multiple'] ) ? $option['multiple'] : false;
+        $args	    = is_array( $args ) ? $args : $this->generate_args_from_string( $args );
+        $option_value	= get_option( $id );
+
+
+        echo $multiple ? "<select name='{$id}[]' id='$id' multiple>" : "<select name='{$id}' id='$id'>";
+		foreach( $args as $key => $value ):
+            if( $multiple ) $selected = is_array( $option_value ) && in_array( $key, $option_value ) ? "selected" : "";
+            else $selected = ($option_value == $key) ? "selected" : "";
+
+			echo "<option $selected value='$key'>$value</option>";
 		endforeach;
 		echo "</select>";
 	}
@@ -1444,11 +1446,13 @@ class wpThemeSettings {
         $id 			= isset( $option['id'] ) ? $option['id'] : "";
         $placeholder 	= isset( $option['placeholder'] ) ? $option['placeholder'] : "";
         $args 			= isset( $option['args'] ) ? $option['args'] : "";
+        $widths 			= isset( $option['width'] ) ? $option['width'] : array('768px'=>'100%','992px'=>'50%', '1200px'=>'30%', );
+        $heights 			= isset( $option['height'] ) ? $option['height'] : array('768px'=>'auto','992px'=>'250px', '1200px'=>'250px', );
 
         $values 	 		= get_option( $id );
 
         ?>
-        <div class="addons-grid">
+        <div class="field-grid-wrapper field-grid-wrapper-<?php echo $id; ?>">
             <?php
 
             foreach($args as $key=>$grid_item){
@@ -1468,6 +1472,37 @@ class wpThemeSettings {
             }
             ?>
         </div>
+
+        <style type="text/css">
+
+            <?php
+            if(!empty($widths)):
+                foreach ($widths as $screen_size=>$width):
+
+                $height = !empty($heights[$screen_size]) ? $heights[$screen_size] : 'auto';
+
+
+                ?>
+                @media screen and (min-width: <?php echo $screen_size; ?>) {
+                    .field-grid-wrapper-<?php echo $id; ?> .item{
+                        width: <?php echo $width; ?>;
+                    }
+
+                    .field-grid-wrapper-<?php echo $id; ?> .item .thumb{
+
+                        height: <?php echo $height; ?>;
+                    }
+
+
+                }
+                <?php
+
+                endforeach;
+            endif;
+
+            ?>
+
+        </style>
 
         <?php
 

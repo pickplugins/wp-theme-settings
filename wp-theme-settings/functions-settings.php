@@ -7,9 +7,20 @@
 if ( ! defined('ABSPATH')) exit;  // if direct access 
 
 
+add_action('wp_theme_settings_field_hello_world','wp_theme_settings_field_hello');
 
+function wp_theme_settings_field_hello($option){
 
+    $id			= isset( $option['id'] ) ? $option['id'] : "";
+    $args 	= isset( $option['args'] ) ? $option['args'] : "";
+    ?>
+    <div class="">Hello World!</div>
 
+    <?php
+
+    var_dump($args);
+
+}
 
 
 
@@ -28,11 +39,24 @@ $page_1_options = array(
 			'options' 	=> array(
 
 
+array(
+    'id'		=> 'custom_field_hello',
+    'title'		=> __('Custom field hello world','text-domain'),
+    'details'	=> __('Description of custom input field hello world','text-domain'),
+    'type'		=> 'hello_world',
+    'args'		=> array(
+        'option_1'	=> __('Option 1','text-domain'),
+        'option_2'	=> __('Option 2','text-domain'),
+        'option_3'	=> __('Option 3','text-domain'),
+        'option_4'	=> __('Option 4','text-domain'),
+    ),
+),
+
 
 
                 array(
                     'id'		=> 'select2_sidebars_field',
-                    'title'		=> __('Select2 for sidebar  Field','text-domain'),
+                    'title'		=> __('Select2 for sidebar Field','text-domain'),
                     'details'	=> __('Description of select2 for sidebars field','text-domain'),
                     'type'		=> 'select2',
                     'args'		=> 'WPADMINSETTINGS_SIDEBARS_ARRAY',
@@ -59,7 +83,7 @@ $page_1_options = array(
 
 array(
     'id'		=> 'time_format_field',
-    'title'		=> __('time format Field','text-domain'),
+    'title'		=> __('Time format Field','text-domain'),
     'details'	=> __('Description of time format field','text-domain'),
     'type'		=> 'time_format',
     'args'		=> array('g:i a' ,'g:i A', 'H:i'),
@@ -68,7 +92,7 @@ array(
 
 array(
     'id'		=> 'date_format_field',
-    'title'		=> __('date format Field','text-domain'),
+    'title'		=> __('Date format Field','text-domain'),
     'details'	=> __('Description of date format field','text-domain'),
     'type'		=> 'date_format',
     'args'		=> array('F j, Y' ,'Y-m-d', 'm/d/Y' ,'d/m/Y' ),
@@ -77,8 +101,8 @@ array(
 
 array(
     'id'		=> 'icon_multi_field',
-    'title'		=> __('icon multi Field','text-domain'),
-    'details'	=> __('Description of icon field','text-domain'),
+    'title'		=> __('Icon multi Field','text-domain'),
+    'details'	=> __('Description of multi icon field','text-domain'),
     'type'		=> 'icon_multi',
     'default'	=> array('fas fa-bomb','fas fa-address-book'),
     'args'		=> 'WPADMINSETTINGS_FONTAWESOME_ARRAY',
@@ -86,7 +110,7 @@ array(
 
 array(
     'id'		=> 'icon_field',
-    'title'		=> __('icon Field','text-domain'),
+    'title'		=> __('Icon Field','text-domain'),
     'details'	=> __('Description of icon field','text-domain'),
     'type'		=> 'icon',
     'default'	=> 'fas fa-bomb',
@@ -95,34 +119,33 @@ array(
 
 
 
-                array(
-                    'id'		=> 'color_palette_field',
-                    'title'		=> __('color palette Field','text-domain'),
-                    'details'	=> __('Description of color palette field','text-domain'),
-                    'type'		=> 'color_palette',
-                    'colors'		=> array('#dd3333','#1e73be','#8224e3','#e07000','#1e73be','#8224e3'),
-//                    'args'		=> array(
-//                        'size'	=> '50px',
-//                        'type'	=> 'round', // round, semi-round, square
-//                        'style'	=> '',
-//                    ),
+array(
+    'id'		=> 'color_palette_field',
+    'title'		=> __('Color palette Field','text-domain'),
+    'details'	=> __('Description of color palette field','text-domain'),
+    'type'		=> 'color_palette',
+    'colors'		=> array('#dd3333','#1e73be','#8224e3','#e07000','#1e73be','#8224e3'),
+    'args'		=> array(
+        'size'	=> '50px',
+        'type'	=> 'round', // round, semi-round, square
+        'style'	=> '',
+    ),
+),
 
-                ),
 
+array(
+    'id'		=> 'color_palette_multi_field',
+    'title'		=> __('Color palette multi Field','text-domain'),
+    'details'	=> __('Description of color palette multi field','text-domain'),
+    'type'		=> 'color_palette_multi',
+    'colors'		=> array('#dd3333','#1e73be','#8224e3','#e07000','#1e73be','#8224e3'),
+    'args'		=> array(
+        'size'	=> '50px',
+        'type'	=> 'round', // round, semi-round, square
+        'style'	=> '',
+    ),
 
-                array(
-                    'id'		=> 'color_palette_multi_field',
-                    'title'		=> __('color palette multi Field','text-domain'),
-                    'details'	=> __('Description of color palette multi field','text-domain'),
-                    'type'		=> 'color_palette_multi',
-                    'colors'		=> array('#dd3333','#1e73be','#8224e3','#e07000','#1e73be','#8224e3'),
-//                    'args'		=> array(
-//                        'size'	=> '50px',
-//                        'type'	=> 'round', // round, semi-round, square
-//                        'style'	=> '',
-//                    ),
-
-                ),
+),
 
 
 
@@ -138,7 +161,6 @@ array(
         'option_1'	=> array('src'=>'https://i.imgur.com/YiUyAgA.png', 'width'=>'100px', 'height'=>'auto'),
         'option_2'	=> array('src'=>'https://i.imgur.com/tWGz0EU.png', 'width'=>'100px', 'height'=>'auto'),
         'option_3'	=> array('src'=>'https://i.imgur.com/GT3VkYX.png', 'width'=>'100px', 'height'=>'auto'),
-
     ),
 ),
 
@@ -401,44 +423,47 @@ array(
     'type'		    => 'datepicker',
 ),
 
-                array(
-                    'id'		=> 'faq_field',
-                    'title'		=> __('FAQ field','text-domain'),
-                    'details'	=> __('Description of faq field','text-domain'),
-                    'type'		=> 'faq',
-                    'args'		=> array(
-                        array('title'=>'What is Lorem Ipsum?','link'=>'#', 'content'=>'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'),
-                        array('title'=>'Why do we use it?','link'=>'#', 'content'=>'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).'),
-                        array('title'=>'Where does it come from?','link'=>'#', 'content'=>'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.'),
-                    ),
-                ),
+array(
+    'id'		=> 'faq_field',
+    'title'		=> __('FAQ field','text-domain'),
+    'details'	=> __('Description of faq field','text-domain'),
+    'type'		=> 'faq',
+    'args'		=> array(
+        array('title'=>'What is Lorem Ipsum?','link'=>'#', 'content'=>'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'),
+        array('title'=>'Why do we use it?','link'=>'#', 'content'=>'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).'),
+        array('title'=>'Where does it come from?','link'=>'#', 'content'=>'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.'),
+    ),
+),
 
-                array(
-                    'id'		=> 'addon_grid',
-                    'title'		=> __('Popular Plugins','user-verification'),
-                    'details'	=> __('See our all plugins here <a href="https://www.pickplugins.com/plugins/">https://www.pickplugins.com/plugins/</a>','user-verification'),
-                    'type'		=> 'grid',
-                    'args'		=> array(
-                        array('title'=>'Post Grid','link'=>'https://www.pickplugins.com/item/post-grid-create-awesome-grid-from-any-post-type-for-wordpress/', 'content'=>'', 'thumb'=>'https://www.pickplugins.com/wp-content/uploads/2015/12/3814-post-grid-thumb-500x262.jpg'),
-                        array('title'=>'Accordion','link'=>'https://www.pickplugins.com/item/accordions-html-css3-responsive-accordion-grid-for-wordpress/', 'content'=>'','thumb'=>'https://www.pickplugins.com/wp-content/uploads/2016/01/3932-product-thumb-500x250.png' ),
-                        array('title'=>'Woocommerce Product Slider','link'=>'https://www.pickplugins.com/item/woocommerce-products-slider-for-wordpress/', 'content'=>'','thumb'=>'https://www.pickplugins.com/wp-content/uploads/2016/03/4357-woocommerce-products-slider-thumb-500x250.jpg'),
-                        array('title'=>'Team Showcase','link'=>'https://www.pickplugins.com/item/team-responsive-meet-the-team-grid-for-wordpress/', 'content'=>'','thumb'=>'https://www.pickplugins.com/wp-content/uploads/2016/06/5145-team-thumb-500x250.jpg'),
-                        array('title'=>'Breadcrumb','link'=>'https://www.pickplugins.com/item/breadcrumb-awesome-breadcrumbs-style-navigation-for-wordpress/', 'content'=>'','thumb'=>'https://www.pickplugins.com/wp-content/uploads/2016/03/4242-breadcrumb-500x252.png'),
-                        array('title'=>'Wishlist for WooCommerce','link'=>'https://www.pickplugins.com/item/woocommerce-wishlist/', 'content'=>'','thumb'=>'https://www.pickplugins.com/wp-content/uploads/2017/10/12047-woocommerce-wishlist-500x250.png'),
+array(
+    'id'		=> 'field_grid',
+    'title'		=> __('Field Grid','user-verification'),
+    'details'	=> __('Description of grid field','user-verification'),
+    'type'		=> 'grid',
+    'width'		=> array('768px'=>'100%','992px'=>'50%', '1200px'=>'30%', ),
+    'height'		=> array('768px'=>'auto','992px'=>'150px', '1200px'=>'150px', ),
+    'args'		=> array(
+        array('title'=>'Post Grid','link'=>'https://www.pickplugins.com/', 'content'=>'', 'thumb'=>'https://i.imgur.com/or7wFbn.jpg'),
+        array('title'=>'Accordion','link'=>'https://www.pickplugins.com/', 'content'=>'','thumb'=>'https://i.imgur.com/qCXd3nZ.jpg' ),
+        array('title'=>'Woocommerce Product Slider','link'=>'https://www.pickplugins.com/', 'content'=>'','thumb'=>'https://i.imgur.com/CkhKEkY.jpg'),
+        array('title'=>'Team Showcase','link'=>'https://www.pickplugins.com/', 'content'=>'','thumb'=>'https://i.imgur.com/0fhJlpr.jpg'),
+        array('title'=>'Breadcrumb','link'=>'https://www.pickplugins.com/', 'content'=>'','thumb'=>'https://i.imgur.com/oE7nhsI.jpg'),
+        array('title'=>'Wishlist for WooCommerce','link'=>'https://www.pickplugins.com/', 'content'=>'','thumb'=>'https://i.imgur.com/8aAJwsg.jpg'),
 
-                    ),
-                ),
+    ),
+),
 
 
 
 
-                array(
-                    'id'		=> 'select2_page_list_field',
-                    'title'		=> __('Multi Select2 for Page list  Field','text-domain'),
-                    'details'	=> __('Description of multi select2 for Page list field','text-domain'),
-                    'type'		=> 'select2',
-                    'args'		=> 'WPADMINSETTINGS_PAGES_ARRAY',
-                ),
+array(
+    'id'		=> 'page_select_field',
+    'title'		=> __('Page select  Field','text-domain'),
+    'details'	=> __('Description of multi select2 for Page list field','text-domain'),
+    'type'		=> 'select2',
+    //'multiple'		=> true,
+    'args'		=> 'WPADMINSETTINGS_PAGES_ARRAY',
+),
 
 
 
@@ -468,11 +493,13 @@ $page_4_options = array(
 
                 array(
                     'id'		=> 'select2_posts_list_field',
-                    'title'		=> __('Multi Select2 for post list  Field','text-domain'),
+                    'title'		=> __('Post select field','text-domain'),
                     'details'	=> __('Description of multi select2 for Page list field','text-domain'),
                     'type'		=> 'select2',
                     'args'		=> 'WPADMINSETTINGS_POSTS_ARRAY',
                 ),
+
+
 
                 array(
                     'id'		=> 'select2_post_types_list_field',
@@ -493,13 +520,14 @@ $page_4_options = array(
 
 
 
-                array(
-                    'id'		=> 'select2_tax_list_field',
-                    'title'		=> __('Multi Select2 for Taxonomy(category) list  Field','text-domain'),
-                    'details'	=> __('Description of multi select2 for Taxonomy(category) list field','text-domain'),
-                    'type'		=> 'select2',
-                    'args'		=> 'WPADMINSETTINGS_TAX_%category%',
-                ),
+array(
+    'id'		=> 'terms_select8',
+    'title'		=> __('Terms select Field','text-domain'),
+    'details'	=> __('Description of Taxonomy(category) list field','text-domain'),
+    'type'		=> 'select',
+    'multiple'  => true,
+    'args'		=> 'WPADMINSETTINGS_TAX_%category%',
+),
 
 
 

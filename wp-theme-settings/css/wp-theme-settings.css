@@ -154,20 +154,20 @@
 
 
 /*addons-grid*/
-.addons-grid{}
-.addons-grid .item{
+.field-grid-wrapper{}
+.field-grid-wrapper .item{
     width: 300px;
     display: inline-block;
     vertical-align: top;
     margin: 10px;
-    background: #ddd;
+    background: #eee;
     overflow: hidden;
 }
-.addons-grid .name{
+.field-grid-wrapper .name{
 
 }
 
-.addons-grid .name a{
+.field-grid-wrapper .name a{
     margin: 10px;
     text-decoration: none;
     display: block;
@@ -175,10 +175,21 @@
 }
 
 
-.addons-grid .thumb{ }
-.addons-grid .thumb img{
+.field-grid-wrapper .thumb{
+    overflow: hidden;
+}
+.field-grid-wrapper .thumb img{
     width: 100%;
     height: auto;
+}
+
+@media screen and (max-width: 768px) {
+
+    .field-grid-wrapper .item{
+        width: 100%;
+
+    }
+
 }
 
 /*faq-list*/
