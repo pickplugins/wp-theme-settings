@@ -937,8 +937,10 @@ class wpThemeSettings {
 
         $id 			= isset( $option['id'] ) ? $option['id'] : "";
         $placeholder 	= isset( $option['placeholder'] ) ? $option['placeholder'] : "";
-        $values 	 		= get_option( $id );
+        $default 	    = isset( $option['default'] ) ? $option['default'] : "";
+        $values 	 	= get_option( $id );
 
+        $values = !empty($values) ? $values : $default;
 
         ?>
 
@@ -1098,6 +1100,77 @@ class wpThemeSettings {
                                         ?>
                                         <input type="number" class="regular-text" name="<?php echo $id; ?>[<?php echo $index; ?>][<?php echo $item_id; ?>]" placeholder="" value="<?php echo esc_html($value); ?>">
 
+                                    <?php elseif($type == 'url'):
+                                        $default = isset($field['default']) ? $field['default'] : '';
+
+                                        $value = !empty($val[$item_id]) ? $val[$item_id] : $default;
+
+                                        ?>
+                                        <input type="url" class="regular-text" name="<?php echo $id; ?>[<?php echo $index; ?>][<?php echo $item_id; ?>]" placeholder="" value="<?php echo esc_html($value); ?>">
+
+
+
+                                    <?php elseif($type == 'tel'):
+                                        $default = isset($field['default']) ? $field['default'] : '';
+
+                                        $value = !empty($val[$item_id]) ? $val[$item_id] : $default;
+
+                                        ?>
+                                        <input type="tel" class="regular-text" name="<?php echo $id; ?>[<?php echo $index; ?>][<?php echo $item_id; ?>]" placeholder="" value="<?php echo esc_html($value); ?>">
+
+
+                                    <?php elseif($type == 'time'):
+                                        $default = isset($field['default']) ? $field['default'] : '';
+
+                                        $value = !empty($val[$item_id]) ? $val[$item_id] : $default;
+
+                                        ?>
+                                        <input type="time" class="regular-text" name="<?php echo $id; ?>[<?php echo $index; ?>][<?php echo $item_id; ?>]" placeholder="" value="<?php echo esc_html($value); ?>">
+
+
+
+                                    <?php elseif($type == 'search'):
+                                        $default = isset($field['default']) ? $field['default'] : '';
+
+                                        $value = !empty($val[$item_id]) ? $val[$item_id] : $default;
+
+                                        ?>
+                                        <input type="search" class="regular-text" name="<?php echo $id; ?>[<?php echo $index; ?>][<?php echo $item_id; ?>]" placeholder="" value="<?php echo esc_html($value); ?>">
+
+
+
+
+                                    <?php elseif($type == 'month'):
+                                        $default = isset($field['default']) ? $field['default'] : '';
+
+                                        $value = !empty($val[$item_id]) ? $val[$item_id] : $default;
+
+                                        ?>
+                                        <input type="month" class="regular-text" name="<?php echo $id; ?>[<?php echo $index; ?>][<?php echo $item_id; ?>]" placeholder="" value="<?php echo esc_html($value); ?>">
+
+
+
+
+                                    <?php elseif($type == 'color'):
+                                        $default = isset($field['default']) ? $field['default'] : '';
+
+                                        $value = !empty($val[$item_id]) ? $val[$item_id] : $default;
+
+                                        ?>
+                                        <input type="color" class="regular-text" name="<?php echo $id; ?>[<?php echo $index; ?>][<?php echo $item_id; ?>]" placeholder="" value="<?php echo esc_html($value); ?>">
+
+
+                                    <?php elseif($type == 'date'):
+                                        $default = isset($field['default']) ? $field['default'] : '';
+
+                                        $value = !empty($val[$item_id]) ? $val[$item_id] : $default;
+
+                                        ?>
+                                        <input type="date" class="regular-text" name="<?php echo $id; ?>[<?php echo $index; ?>][<?php echo $item_id; ?>]" placeholder="" value="<?php echo esc_html($value); ?>">
+
+
+
+
 
                                     <?php elseif($type == 'email'):
                                         $default = isset($field['default']) ? $field['default'] : '';
@@ -1109,12 +1182,6 @@ class wpThemeSettings {
 
 
 
-
-
-
-
-
-
                                     <?php elseif($type == 'textarea'):
                                         $default = isset($field['default']) ? $field['default'] : '';
 
@@ -1122,22 +1189,6 @@ class wpThemeSettings {
 
                                         ?>
                                     <textarea name="<?php echo $id; ?>[<?php echo $index; ?>][<?php echo $item_id; ?>]"><?php echo esc_html($value); ?></textarea>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
                                     <?php elseif($type == 'select'):
                                         $args = isset($field['args']) ? $field['args'] : array();
@@ -1189,6 +1240,11 @@ class wpThemeSettings {
                                     <?php endforeach; ?>
 
 
+                                    <?php
+                                    else:
+
+                                        do_action('repeatable_custom_input_field_'.$type, $field);
+                                        ?>
 
 
 
@@ -1284,10 +1340,11 @@ class wpThemeSettings {
 		
 		$id 	    = isset( $option['id'] ) ? $option['id'] : "";
 		$args 	    = isset( $option['args'] ) ? $option['args'] : array();
+        $default = isset( $option['default'] ) ? $option['default'] : "";
         $multiple 	= isset( $option['multiple'] ) ? $option['multiple'] : false;
         $args	    = is_array( $args ) ? $args : $this->generate_args_from_string( $args );
         $option_value	= get_option( $id );
-
+        $option_value = !empty($option_value) ? $option_value : $default;
 
         echo $multiple ? "<select name='{$id}[]' id='$id' multiple>" : "<select name='{$id}' id='$id'>";
 		foreach( $args as $key => $value ):
@@ -1313,8 +1370,11 @@ class wpThemeSettings {
 
         $id				= isset( $option['id'] ) ? $option['id'] : "";
         $args			= isset( $option['args'] ) ? $option['args'] : array();
+        $default = isset( $option['default'] ) ? $option['default'] : "";
         $args			= is_array( $args ) ? $args : $this->generate_args_from_string( $args );
         $option_value	= get_option( $id );
+        $option_value = !empty($option_value) ? $option_value : $default;
+
 
         echo "<select multiple name='{$id}[]'>";
         foreach( $args as $key => $value ):
@@ -1601,7 +1661,10 @@ class wpThemeSettings {
     public function generate_field_color_palette( $option ){
 
         $id				= isset( $option['id'] ) ? $option['id'] : "";
+
         $args			= isset( $option['args'] ) ? $option['args'] : array();
+        $width				= isset( $args['width'] ) ? $args['width'] : "";
+        $height				= isset( $args['height'] ) ? $args['height'] : "";
         $colors			= isset( $option['colors'] ) ? $option['colors'] : array();
         $option_value	= get_option( $id );
 
@@ -1623,11 +1686,20 @@ class wpThemeSettings {
         <style type="text/css">
             .field-color-palette-wrapper-<?php echo $id; ?> .sw-button{
                 transition: ease all 1s;
+
+                <?php if(!empty($width)):  ?>
+                    width: <?php echo $width; ?>;
+                <?php endif; ?>
+                <?php if(!empty($height)):  ?>
+                    height: <?php echo $height; ?>;
+                <?php endif; ?>
             }
 
             .field-color-palette-wrapper-<?php echo $id; ?> label:hover .sw-button{
 
             }
+
+
 
 
         </style>
@@ -1656,6 +1728,8 @@ class wpThemeSettings {
 
         $id				= isset( $option['id'] ) ? $option['id'] : "";
         $args			= isset( $option['args'] ) ? $option['args'] : array();
+        $width				= isset( $args['width'] ) ? $args['width'] : "";
+        $height				= isset( $args['height'] ) ? $args['height'] : "";
         $colors			= isset( $option['colors'] ) ? $option['colors'] : array();
         $option_value	= get_option( $id );
 
@@ -1677,6 +1751,13 @@ class wpThemeSettings {
         <style type="text/css">
             .field-color-palette-wrapper-multi-<?php echo $id; ?> .sw-button{
                 transition: ease all 1s;
+                <?php if(!empty($width)):  ?>
+                    width: <?php echo $width; ?>;
+                <?php endif; ?>
+                <?php if(!empty($height)):  ?>
+                    height: <?php echo $height; ?>;
+                <?php endif; ?>
+
             }
 
             .field-color-palette-wrapper-multi-<?php echo $id; ?> label:hover .sw-button{

@@ -133,7 +133,7 @@
 
 
 
-.wpadminsettings input[type="text"], .wpadminsettings textarea, .wpadminsettings select, .wpadminsettings input[type="range"], .wpadminsettings input[type="number"],.wpadminsettings .select2 {
+.wpadminsettings input[type="text"],.wpadminsettings input[type="email"], .wpadminsettings input[type="url"],.wpadminsettings input[type="time"],.wpadminsettings input[type="tel"],.wpadminsettings input[type="date"],.wpadminsettings input[type="search"], .wpadminsettings input[type="month"], .wpadminsettings input[type="color"], .wpadminsettings textarea, .wpadminsettings select, .wpadminsettings input[type="range"], .wpadminsettings input[type="number"],.wpadminsettings .select2 {
     width: 320px;
 }
 

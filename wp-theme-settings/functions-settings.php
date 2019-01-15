@@ -24,6 +24,29 @@ function wp_theme_settings_field_hello($option){
 
 
 
+add_action('repeatable_custom_input_field_hello_world','repeatable_custom_input_field_hello_world');
+
+function repeatable_custom_input_field_hello_world($field){
+
+    $id			= isset( $field['id'] ) ? $field['id'] : "";
+    $args 	= isset( $field['args'] ) ? $field['args'] : "";
+    ?>
+    <div class="">Hello World!</div>
+
+    <?php
+
+    //var_dump($args);
+
+}
+
+
+
+
+
+
+
+
+
 
 
 
@@ -54,31 +77,33 @@ array(
 
 
 
-                array(
-                    'id'		=> 'select2_sidebars_field',
-                    'title'		=> __('Select2 for sidebar Field','text-domain'),
-                    'details'	=> __('Description of select2 for sidebars field','text-domain'),
-                    'type'		=> 'select2',
-                    'args'		=> 'WPADMINSETTINGS_SIDEBARS_ARRAY',
-                ),
+array(
+    'id'		=> 'sidebars_field',
+    'title'		=> __('Sidebar select Field','text-domain'),
+    'details'	=> __('Description of sidebars select field','text-domain'),
+    'type'		=> 'select2',
+    //'multiple'=> true,
+    'args'		=> 'WPADMINSETTINGS_SIDEBARS_ARRAY',
+),
 
 
-               array(
-                   'id'		=> 'select2_menu_field',
-                   'title'		=> __('Select2 for menu  Field','text-domain'),
-                   'details'	=> __('Description of select2 for menu field','text-domain'),
-                   'type'		=> 'select2',
-                   'args'		=> 'WPADMINSETTINGS_MENUS_ARRAY',
-               ),
+array(
+   'id'		=> 'menu_select_field',
+   'title'		=> __('Menu select Field','text-domain'),
+   'details'	=> __('Description of menu select field','text-domain'),
+   'type'		=> 'select2',
+    //'multiple'=> true,
+   'args'		=> 'WPADMINSETTINGS_MENUS_ARRAY',
+),
 
-                array(
-                    'id'		=> 'select2_user_roles_field',
-                    'title'		=> __('Select2 for user roles  Field','text-domain'),
-                    'details'	=> __('Description of select2 for user roles field','text-domain'),
-                    'type'		=> 'select2',
-                    'multiple'=> true,
-                    'args'		=> 'WPADMINSETTINGS_USER_ROLES',
-                ),
+array(
+    'id'		=> 'user_roles_field',
+    'title'		=> __('User roles select Field','text-domain'),
+    'details'	=> __('Description of user roles select field','text-domain'),
+    'type'		=> 'select2',
+    'multiple'=> true,
+    'args'		=> 'WPADMINSETTINGS_USER_ROLES',
+),
 
 
 array(
@@ -126,9 +151,9 @@ array(
     'type'		=> 'color_palette',
     'colors'		=> array('#dd3333','#1e73be','#8224e3','#e07000','#1e73be','#8224e3'),
     'args'		=> array(
-        'size'	=> '50px',
-        'type'	=> 'round', // round, semi-round, square
-        'style'	=> '',
+        'width'	    => '30px',
+        'height'	=> '30px',
+        'style'	    => '',
     ),
 ),
 
@@ -140,8 +165,8 @@ array(
     'type'		=> 'color_palette_multi',
     'colors'		=> array('#dd3333','#1e73be','#8224e3','#e07000','#1e73be','#8224e3'),
     'args'		=> array(
-        'size'	=> '50px',
-        'type'	=> 'round', // round, semi-round, square
+        'width'	    => '30px',
+        'height'	=> '30px',
         'style'	=> '',
     ),
 
@@ -253,29 +278,32 @@ array(
     'args'		=> array('min' => '0','max' => '100','step' => '10'),
 ),
 
-                array(
-                    'id'		=> 'select_field',
-                    'title'		=> __('Select Field','text-domain'),
-                    'details'	=> __('Description of select field','text-domain'),
-                    'type'		=> 'select',
-                    'args'		=> array(
-                        'option_1'	=> __('Option 1','text-domain'),
-                        'option_2'	=> __('Option 2','text-domain'),
-                    ),
-                ),
+array(
+    'id'		=> 'select_field',
+    'title'		=> __('Select Field','text-domain'),
+    'details'	=> __('Description of select field','text-domain'),
+    'type'		=> 'select',
+    'default'		=> 'option_2',
+    'args'		=> array(
+        'option_1'	=> __('Option 1','text-domain'),
+        'option_2'	=> __('Option 2','text-domain'),
+        'option_3'	=> __('Option 3','text-domain'),
+    ),
+),
 
-                array(
-                    'id'		=> 'select_multi_field',
-                    'title'		=> __('Multi Select  Field','text-domain'),
-                    'details'	=> __('Description of multi select field','text-domain'),
-                    'type'		=> 'select_multi',
-                    'args'		=> array(
-                        'option_1'	=> __('Option 1','text-domain'),
-                        'option_2'	=> __('Option 2','text-domain'),
-                        'option_3'	=> __('Option 3','text-domain'),
-                        'option_4'	=> __('Option 4','text-domain'),
-                    ),
-                ),
+array(
+    'id'		=> 'select_multi_field',
+    'title'		=> __('Multi Select  Field','text-domain'),
+    'details'	=> __('Description of multi select field','text-domain'),
+    'type'		=> 'select_multi',
+    'default'		=> array('option_2'),
+    'args'		=> array(
+        'option_1'	=> __('Option 1','text-domain'),
+        'option_2'	=> __('Option 2','text-domain'),
+        'option_3'	=> __('Option 3','text-domain'),
+        'option_4'	=> __('Option 4','text-domain'),
+    ),
+),
 
                 array(
                     'id'		=> 'select2_field5',
@@ -386,6 +414,7 @@ array(
     'title'		    => __('Text Field','text-domain'),
     'details'	    => __('Description of text field','text-domain'),
     'type'		    => 'text',
+    'default'		=> 'Default Text',
     'placeholder'   => __('Text value','text-domain'),
 ),
 
@@ -394,6 +423,7 @@ array(
     'title'		    => __('Multi Text Field','text-domain'),
     'details'	    => __('Description of multi text field','text-domain'),
     'type'		    => 'text_multi',
+    'default'		=> array('Default Text #1', 'Default Text #2', 'Default Text #3'),
     'placeholder'   => __('Text value','text-domain'),
 ),
 
@@ -491,32 +521,36 @@ $page_4_options = array(
 
 
 
-                array(
-                    'id'		=> 'select2_posts_list_field',
-                    'title'		=> __('Post select field','text-domain'),
-                    'details'	=> __('Description of multi select2 for Page list field','text-domain'),
-                    'type'		=> 'select2',
-                    'args'		=> 'WPADMINSETTINGS_POSTS_ARRAY',
-                ),
+array(
+    'id'		=> 'select2_posts_list_field',
+    'title'		=> __('Post select field','text-domain'),
+    'details'	=> __('Description of multi select2 for Page list field','text-domain'),
+    'type'		=> 'select',
+    'multiple'		=> true,
+
+    'args'		=> 'WPADMINSETTINGS_POSTS_ARRAY',
+),
 
 
 
-                array(
-                    'id'		=> 'select2_post_types_list_field',
-                    'title'		=> __('Multi Select2 for post types list  Field','text-domain'),
-                    'details'	=> __('Description of multi select2 for post types list field','text-domain'),
-                    'type'		=> 'select2',
-                    'args'		=> 'WPADMINSETTINGS_POST_TYPES_ARRAY',
-                ),
+array(
+    'id'		=> 'post_types_field',
+    'title'		=> __('Post types select Field','text-domain'),
+    'details'	=> __('Description ofPost types select field','text-domain'),
+    'type'		=> 'select2',
+    'multiple'		=> true,
+    'args'		=> 'WPADMINSETTINGS_POST_TYPES_ARRAY',
+),
 
 
-                array(
-                    'id'		=> 'thumb_sizes_field2',
-                    'title'		=> __('Thumbnail sizes Field 2','text-domain'),
-                    'details'	=> __('Description of select Thumbnail sizes field','text-domain'),
-                    'type'		=> 'select2',
-                    'args'		=> 'WPADMINSETTINGS_THUMB_SIEZS_ARRAY',
-                ),
+array(
+    'id'		=> 'thumb_sizes_field2',
+    'title'		=> __('Thumbnail sizes Field 2','text-domain'),
+    'details'	=> __('Description of select Thumbnail sizes field','text-domain'),
+    'type'		=> 'checkbox',
+    'multiple'		=> true,
+    'args'		=> 'WPADMINSETTINGS_THUMB_SIEZS_ARRAY',
+),
 
 
 
@@ -538,8 +572,20 @@ array(
     'type'		=> 'repeatable',
     'collapsible'=>true,
     'fields'    => array(
+
+        array('type'=>'hello_world', 'default'=>'Hello 3', 'item_id'=>'hello_world_field', 'name'=>'Hello world Field'),
         array('type'=>'text', 'default'=>'Hello 3', 'item_id'=>'text_field', 'name'=>'Text Field'),
         array('type'=>'number', 'default'=>'123456', 'item_id'=>'number_field', 'name'=>'Number Field'),
+        array('type'=>'tel', 'default'=>'', 'item_id'=>'tel_field', 'name'=>'Tel Field'),
+        array('type'=>'time', 'default'=>'', 'item_id'=>'time_field', 'name'=>'Time Field'),
+        array('type'=>'url', 'default'=>'', 'item_id'=>'url_field', 'name'=>'URL Field'),
+
+        array('type'=>'date', 'default'=>'', 'item_id'=>'date_field', 'name'=>'Date Field'),
+        array('type'=>'month', 'default'=>'', 'item_id'=>'month_field', 'name'=>'Month Field'),
+        array('type'=>'search', 'default'=>'', 'item_id'=>'search_field', 'name'=>'Search Field'),
+
+
+        array('type'=>'color', 'default'=>'', 'item_id'=>'color_field', 'name'=>'Color Field'),
         array('type'=>'email', 'default'=>'support@hello.com', 'item_id'=>'email_field', 'name'=>'Email Field'),
         array('type'=>'textarea', 'default'=>'Textarea content', 'item_id'=>'textarea_field', 'name'=>'Textarea Field'),
         array('type'=>'select', 'default'=>'option_1', 'item_id'=>'select_field', 'name'=>'Select Field', 'args'=> array('option_1'=>'Option 1', 'option_2'=>'Option 2', 'option_3'=>'Option 3')),
